@@ -241,131 +241,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://flintx.github.io/2017/02/02/HDU-5411/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Flint Zhao">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/Azusa.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Flintx">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Flintx" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/02/HDU-5411/" itemprop="url">
-                  HDU 5411 CRB and Puzzle（矩阵快速幂+可达矩阵）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-02T15:44:14+08:00">
-                2017-02-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##<a href="http://acm.hdu.edu.cn/showproblem.php?pid=5411" target="_blank" rel="external">HDU 5411</a></p>
-<p>###题意：<br>Count the number of different patterns by counting the number of different paths of length at most m-1.</p>
-<p>###思路：<br>其实这类问题就是求：<br>$S=I+A+A^2+…+A^m$<br>一般普适的计算方式是：<br>$$\left(<br>\begin{array}{ccc}<br>A^m\<br>S\<br>\end{array}<br>\right)<br>=\left(<br>\begin{array}{ccc}<br>A &amp; 0\<br>I &amp; I\<br>\end{array}<br>\right)^m<br><em><br>\left(<br>\begin{array}{ccc}<br>I\<br>0\<br>\end{array}<br>\right)$$<br>这样做的好处是可以得到最后的矩阵S，然后求S的所有元素和即是答案-1（没统计$\emptyset$），不过这题n &lt;= 50 ，矩阵大小可能会超过100</em>100，时间复杂度将达到$O(N^3\log M)$再加上数据有20组，会被卡常数TLE，但有一个办法就是将矩阵乘法的取模操作从最内层移到第二层（因为mod只有2015，也就是说矩阵最大元素只有2014，最内层的乘法加法操作不会爆int），可以进行一定常数优化，，刚好可以卡着时间AC（大概480ms）</p>
-<p>但是这题并不需要我们求出最后的加和矩阵S，仅需要它的各项元素和即可，那么我们可以把这个矩阵简化成这样(假设邻接是个四阶矩阵)：<br>$$\left(<br>\begin{array}{ccc}<br> &amp;&amp;&amp; &amp;0\<br>   &amp;&amp;&amp;&amp; 0\<br> &amp;&amp;A&amp; &amp;0\<br>  &amp;&amp;&amp;&amp; 0\<br>1&amp; 1&amp;1&amp;1&amp;1\<br>\end{array}<br>\right)^m=<br>\left(<br>\begin{array}{ccc}<br> &amp;&amp;&amp; &amp;0\<br>   &amp;&amp;&amp;&amp; 0\<br> &amp;&amp;A^m&amp; &amp;0\<br>  &amp;&amp;&amp;&amp; 0\<br>a_1&amp; a_2&amp;a_3&amp;a_4&amp;a<em>5\<br>\end{array}<br>\right)$$<br>$ans=\sum</em>{i=1}^na_i$<br>这样做就避免了空间的浪费，且保留下来了答案，当然这里初始矩阵的最下面一行1也可以放去最上层，最左层，最右层，因为是计算$A^k$所有元素和，并无影响。<br>这种做法复杂度与之前一致，但因为矩阵大小降了近乎一半，耗时相对少了很多（大概93msAC）</p>
-<p>###代码：</p>
-<p>####方法1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">* @author FreeWifi_novicer</div><div class="line">* language : C++/C</div><div class="line">*/</div><div class="line">#include&lt;cstdio&gt;</div><div class="line">#include&lt;iostream&gt;</div><div class="line">#include&lt;cstring&gt;</div><div class="line">#include&lt;cstdlib&gt;</div><div class="line">#include&lt;cmath&gt;</div><div class="line">#include&lt;algorithm&gt;</div><div class="line">#include&lt;string&gt;</div><div class="line">#include&lt;map&gt;</div><div class="line">#include&lt;set&gt;</div><div class="line">#include&lt;vector&gt;</div><div class="line">#include&lt;queue&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">#define clr( x , y ) memset(x,y,sizeof(x))</div><div class="line">#define cls( x ) memset(x,0,sizeof(x))</div><div class="line">#define mp make_pair</div><div class="line">#define pb push_back</div><div class="line">typedef long long lint;</div><div class="line">typedef long long ll;</div><div class="line">typedef long long LL;</div><div class="line"></div><div class="line">const int maxn = 100 + 5 ;</div><div class="line">const int mod = 2015 ;</div><div class="line">struct Matrix &#123;</div><div class="line">    int n , m ;</div><div class="line">    int a[maxn][maxn] ;</div><div class="line">    Matrix( int n , int m )&#123;</div><div class="line">        this-&gt;n = n ;</div><div class="line">        this-&gt;m = m ;</div><div class="line">        cls(a) ;</div><div class="line">    &#125;</div><div class="line">    Matrix operator * ( const Matrix &amp;tmp )&#123;</div><div class="line">        Matrix res( n , tmp.m ) ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ )&#123;</div><div class="line">            for( int j = 0 ; j &lt; tmp.m ; j++ )&#123;</div><div class="line">                for( int k = 0 ; k &lt; m ; k++ )</div><div class="line">                    res.a[i][j] += a[i][k] * tmp.a[k][j] ;</div><div class="line">                if( res.a[i][j] &gt; mod ) res.a[i][j] %= mod ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res ;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">void Matrix_print( Matrix x )&#123;</div><div class="line">    for( int i = 0 ; i &lt; x.n ; i++ )&#123;</div><div class="line">        for( int j = 0 ; j &lt; x.m ; j++ )&#123;</div><div class="line">            cout &lt;&lt; x.a[i][j] &lt;&lt; &apos; &apos;;</div><div class="line">        &#125;</div><div class="line">        cout &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; endl ;</div><div class="line">&#125;</div><div class="line">Matrix fast_pow( Matrix x , int n )&#123;</div><div class="line">    Matrix res( x.n , x.m ) ;</div><div class="line">    for( int i = 0 ; i &lt; x.n ; i++ ) res.a[i][i] = 1 ;</div><div class="line">    while( n )&#123;</div><div class="line">        if( n &amp; 1 )</div><div class="line">            res = res * x ;</div><div class="line">        n &gt;&gt;= 1 ;</div><div class="line">        x = x * x ;</div><div class="line">    &#125;</div><div class="line">    return res ;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">//  freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);</div><div class="line">    int t  ; cin &gt;&gt; t ;</div><div class="line">    while( t-- )&#123;</div><div class="line">        int n , m ;</div><div class="line">        cin &gt;&gt; n &gt;&gt; m ;</div><div class="line">        Matrix G( 2 * n , 2 * n ) ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ )&#123;</div><div class="line">            int k ;</div><div class="line">            scanf( &quot;%d&quot; , &amp;k ) ;</div><div class="line">            for( int j = 0 ; j &lt; k ; j++ )&#123;</div><div class="line">                int tmp ;</div><div class="line">                scanf( &quot;%d&quot; , &amp;tmp ) ;</div><div class="line">                G.a[i][tmp-1] = 1 ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        for( int i = n ; i &lt; 2 * n ; i++ )&#123;</div><div class="line">            G.a[i][i - n] = 1 ;</div><div class="line">            G.a[i][i] = 1 ;</div><div class="line">        &#125;</div><div class="line">        Matrix base( 2 * n , n ) ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ )</div><div class="line">            base.a[i][i] = 1 ;</div><div class="line">        G = fast_pow( G , m  );</div><div class="line">        //Matrix_print( G ) ;</div><div class="line">        base = G * base ;</div><div class="line">        //Matrix_print( base ) ;</div><div class="line">        int ans = 0 ;</div><div class="line">        for( int i = n ; i &lt; 2 * n ; i++ )</div><div class="line">            for( int j = 0 ; j &lt; n ; j++ )</div><div class="line">                ans += base.a[i][j] ;</div><div class="line">        cout &lt;&lt; ( ans + 1 ) % mod &lt;&lt; endl ;</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>####方法2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">* @author FreeWifi_novicer</div><div class="line">* language : C++/C</div><div class="line">*/</div><div class="line">#include&lt;cstdio&gt;</div><div class="line">#include&lt;iostream&gt;</div><div class="line">#include&lt;cstring&gt;</div><div class="line">#include&lt;cstdlib&gt;</div><div class="line">#include&lt;cmath&gt;</div><div class="line">#include&lt;algorithm&gt;</div><div class="line">#include&lt;string&gt;</div><div class="line">#include&lt;map&gt;</div><div class="line">#include&lt;set&gt;</div><div class="line">#include&lt;vector&gt;</div><div class="line">#include&lt;queue&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">#define clr( x , y ) memset(x,y,sizeof(x))</div><div class="line">#define cls( x ) memset(x,0,sizeof(x))</div><div class="line">#define mp make_pair</div><div class="line">#define pb push_back</div><div class="line">typedef long long lint;</div><div class="line">typedef long long ll;</div><div class="line">typedef long long LL;</div><div class="line"></div><div class="line">const int maxn = 100 + 5 ;</div><div class="line">const int mod = 2015 ;</div><div class="line">struct Matrix &#123;</div><div class="line">    int n , m ;</div><div class="line">    int a[maxn][maxn] ;</div><div class="line">    Matrix( int n , int m )&#123;</div><div class="line">        this-&gt;n = n ;</div><div class="line">        this-&gt;m = m ;</div><div class="line">        cls(a) ;</div><div class="line">    &#125;</div><div class="line">    Matrix operator * ( const Matrix &amp;tmp )&#123;</div><div class="line">        Matrix res( n , tmp.m ) ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ )&#123;</div><div class="line">            for( int j = 0 ; j &lt; tmp.m ; j++ )&#123;</div><div class="line">                for( int k = 0 ; k &lt; m ; k++ )</div><div class="line">                    res.a[i][j] += a[i][k] * tmp.a[k][j] ;</div><div class="line">                if( res.a[i][j] &gt; mod ) res.a[i][j] %= mod ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res ;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">void Matrix_print( Matrix x )&#123;</div><div class="line">    for( int i = 0 ; i &lt; x.n ; i++ )&#123;</div><div class="line">        for( int j = 0 ; j &lt; x.m ; j++ )&#123;</div><div class="line">            cout &lt;&lt; x.a[i][j] &lt;&lt; &apos; &apos;;</div><div class="line">        &#125;</div><div class="line">        cout &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line">    cout &lt;&lt; endl ;</div><div class="line">&#125;</div><div class="line">Matrix fast_pow( Matrix x , int n )&#123;</div><div class="line">    Matrix res( x.n , x.m ) ;</div><div class="line">    for( int i = 0 ; i &lt; x.n ; i++ ) res.a[i][i] = 1 ;</div><div class="line">    while( n )&#123;</div><div class="line">        if( n &amp; 1 )</div><div class="line">            res = res * x ;</div><div class="line">        n &gt;&gt;= 1 ;</div><div class="line">        x = x * x ;</div><div class="line">    &#125;</div><div class="line">    return res ;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">//  freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);</div><div class="line">    int t  ; cin &gt;&gt; t ;</div><div class="line">    while( t-- )&#123;</div><div class="line">        int n , m ;</div><div class="line">        cin &gt;&gt; n &gt;&gt; m ;</div><div class="line">        Matrix G( n + 1 , n + 1 ) ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ ) G.a[n][i] = 1 ;</div><div class="line">        for( int i = 0 ; i &lt; n ; i++ )&#123;</div><div class="line">            int k ;</div><div class="line">            scanf( &quot;%d&quot; , &amp;k ) ;</div><div class="line">            for( int j = 0 ; j &lt; k ; j++ )&#123;</div><div class="line">                int tmp ;</div><div class="line">                scanf( &quot;%d&quot; , &amp;tmp ) ;</div><div class="line">                G.a[i][tmp-1] = 1 ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //Matrix_print( G ) ;</div><div class="line">        G = fast_pow( G , m );</div><div class="line">        //Matrix_print( G ) ;</div><div class="line">        int ans = 0 ;</div><div class="line">        for( int i = 0 ; i &lt;= n ; i++ )</div><div class="line">            ans += G.a[n][i] ;</div><div class="line">        cout &lt;&lt; ( ans ) % mod &lt;&lt; endl ;</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://flintx.github.io/2017/02/02/hello/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,7 +252,7 @@
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Flintx">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Flintx" src="">
+      <img style="display:none;" itemprop="url image" alt="Flintx" src="http://more-sky.com/data/out/5/IMG_44089.png">
     </span>
   </span>
 
@@ -500,7 +375,7 @@
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="Flintx">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Flintx" src="">
+      <img style="display:none;" itemprop="url image" alt="Flintx" src="http://more-sky.com/data/out/5/IMG_44089.png">
     </span>
   </span>
 
@@ -650,7 +525,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
