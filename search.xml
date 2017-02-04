@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[PC程序清单 & 实用小工具]]></title>
+      <url>https://flintx.github.io/2017/02/04/tools-list/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前用的PC大限将至，即将随本科岁月一起成为过往。</p>
+<p>在寿终正寝之前，整理一份陪伴五年时光的程序清单。</p>
+<a id="more"></a>
+<h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><hr>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><blockquote>
+<p>Google Chrome</p>
+<p>Mozilla Firefox</p>
+</blockquote>
+<h3 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h3><blockquote>
+<p>网易云音乐</p>
+</blockquote>
+<h3 id="聊天"><a href="#聊天" class="headerlink" title="聊天"></a>聊天</h3><blockquote>
+<p>QQ轻聊版</p>
+</blockquote>
+<h3 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h3><h4 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h4><blockquote>
+<p><strong>C/C++/C#:</strong></p>
+<p>​    Dev C++ 4.9.9.2</p>
+<p>​    Microsoft Visual Studio 14.0</p>
+<p><strong>Java:</strong></p>
+<p>​    IntelliJ IDEA 15.0.2</p>
+<p>​    Android Studio 2.2</p>
+<p>​    Eclipse Java Mars</p>
+<p><strong>Python:</strong></p>
+<p>​    PyCharm 2016.1</p>
+<p><strong>PHP:</strong></p>
+<p>​    PhpStorm 10.0.3</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[hello]]></title>
+      <url>https://flintx.github.io/2017/02/02/hello/</url>
+      <content type="html"><![CDATA[<p>摘要:<br><a id="more"></a><br>正文:</p>
+<h2 id="代码高亮测试"><a href="#代码高亮测试" class="headerlink" title="代码高亮测试"></a>代码高亮测试</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">print(<span class="string">"hello, my blog"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.math.BigInteger;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner cin = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		<span class="keyword">int</span> t = cin.nextInt();</div><div class="line">		<span class="keyword">int</span> i = <span class="number">1</span> ;</div><div class="line">		<span class="keyword">while</span>( i &lt;= t )&#123;</div><div class="line">			BigInteger a = cin.nextBigInteger();</div><div class="line">			BigInteger b = cin.nextBigInteger();</div><div class="line">			BigInteger c = a.mod(b) ;</div><div class="line">			<span class="keyword">if</span>( c == BigInteger.ZERO )</div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": divisible"</span>);</div><div class="line">			<span class="keyword">else</span></div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": not divisible"</span>);</div><div class="line">		&#125;</div><div class="line">		cin.close();</div><div class="line">		</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="数学公式测试"><a href="#数学公式测试" class="headerlink" title="数学公式测试"></a>数学公式测试</h2><script type="math/tex; mode=display">
+\begin{array}{c|lcr}
+n & \text{Left} & \text{Center} & \text{Right} \\
+\hline
+1 & 0.24 & 1 & 125 \\
+2 & -1 & 189 & -8 \\
+3 & -20 & 2000 & 1+10i \\
+\end{array}</script><p>$ x^2 + y^2 = z_1 + z_{a2} $</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>https://flintx.github.io/2017/02/02/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    </entry>
+    
+  
+  
+</search>
