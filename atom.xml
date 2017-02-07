@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://flintx.github.io/"/>
-  <updated>2017-02-07T10:31:14.513Z</updated>
+  <updated>2017-02-04T09:57:03.982Z</updated>
   <id>https://flintx.github.io/</id>
   
   <author>
@@ -14,20 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://flintx.github.io/2017/02/07/Blog-Logs/"/>
-    <id>https://flintx.github.io/2017/02/07/Blog-Logs/</id>
-    <published>2017-02-07T08:41:29.703Z</published>
-    <updated>2017-02-07T10:31:14.513Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>PC程序清单 &amp; 实用小工具</title>
@@ -108,6 +94,58 @@ n & \text{Left} & \text{Center} & \text{Right} \\
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>建站日志</title>
+    <link href="https://flintx.github.io/2017/02/02/Blog-Logs/"/>
+    <id>https://flintx.github.io/2017/02/02/Blog-Logs/</id>
+    <published>2017-02-01T16:41:29.000Z</published>
+    <updated>2017-02-07T10:34:14.044Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="2017-02-07"><a href="#2017-02-07" class="headerlink" title="2017 - 02 - 07"></a>2017 - 02 - 07</h2><ul>
+<li>添加友链</li>
+<li>添加<code>README.md</code>文件</li>
+<li>添加<code>RSS</code>连接</li>
+</ul>
+<h2 id="2017-02-06"><a href="#2017-02-06" class="headerlink" title="2017 - 02 - 06"></a>2017 - 02 - 06</h2><ul>
+<li>增加多说评论功能、<code>UA</code>显示功能</li>
+<li>增加阅读次数统计功能（利用<code>LeanCloud</code>）</li>
+<li>添加<code>关于</code>、<code>分类</code>、<code>标签</code>页面</li>
+</ul>
+<h2 id="2017-02-04"><a href="#2017-02-04" class="headerlink" title="2017 - 02 - 04"></a>2017 - 02 - 04</h2><ul>
+<li>blog主题由<code>NexT</code>修改为<code>yilia</code></li>
+<li>绑定域名<a href="http://www.flintx.me" target="_blank" rel="external">flintx.me</a></li>
+<li>blog主题由<code>yilia</code>修改为<code>NexT</code></li>
+<li>外观Scheme由<code>Pisces</code>修改为<code>Mist</code></li>
+<li>开启代码高亮功能</li>
+<li>开启<code>MathJax</code>数学公式支持</li>
+<li>更换部分字体，并将fonts api的host由google切换至中科大镜像</li>
+<li>使用七牛云作为图床</li>
+</ul>
+<h2 id="2017-02-03"><a href="#2017-02-03" class="headerlink" title="2017 - 02 - 03"></a>2017 - 02 - 03</h2><ul>
+<li>修改语言为中文</li>
+</ul>
+<h2 id="2017-02-02"><a href="#2017-02-02" class="headerlink" title="2017 - 02 - 02"></a>2017 - 02 - 02</h2><ul>
+<li>建立项目<a href="https://github.com/flintx/flintx.github.io" target="_blank" rel="external">flintx.github.io</a></li>
+<li>blog框架由<code>Jekyll</code>切换为<code>Hexo</code></li>
+<li>使用<code>NexT</code>作为blog主题，并采用<code>Pisces</code>作为外观Scheme</li>
+<li>添加侧边栏社交link</li>
+<li>添加作者头像、描述</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;2017-02-07&quot;&gt;&lt;a href=&quot;#2017-02-07&quot; class=&quot;headerlink&quot; title=&quot;2017 - 02 - 07&quot;&gt;&lt;/a&gt;2017 - 02 - 07&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;添加友链&lt;/li&gt;
+&lt;li&gt;添加&lt;code&gt;RE
+    
+    </summary>
+    
+    
+      <category term="博客相关" scheme="https://flintx.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
     
   </entry>
   
