@@ -57,7 +57,10 @@ n & \text{Left} & \text{Center} & \text{Right} \\
     <entry>
       <title><![CDATA[建站日志]]></title>
       <url>https://flintx.github.io/2017/02/02/Blog-Logs/</url>
-      <content type="html"><![CDATA[<h2 id="2017-02-06"><a href="#2017-02-06" class="headerlink" title="2017 - 02 - 06"></a>2017 - 02 - 06</h2><ul>
+      <content type="html"><![CDATA[<h2 id="2017-02-07"><a href="#2017-02-07" class="headerlink" title="2017 - 02 - 07"></a>2017 - 02 - 07</h2><ul>
+<li>添加友链</li>
+</ul>
+<h2 id="2017-02-06"><a href="#2017-02-06" class="headerlink" title="2017 - 02 - 06"></a>2017 - 02 - 06</h2><ul>
 <li>增加多说评论功能、UA显示功能</li>
 <li>增加阅读次数统计功能（利用LeanCloud）</li>
 <li>添加<code>关于</code>、<code>分类</code>、<code>标签</code>页面</li>
