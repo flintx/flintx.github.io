@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://flintx.github.io/"/>
-  <updated>2017-02-07T12:47:04.877Z</updated>
+  <updated>2017-02-07T12:48:12.396Z</updated>
   <id>https://flintx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://flintx.github.io/2017/02/04/tools-list/"/>
     <id>https://flintx.github.io/2017/02/04/tools-list/</id>
     <published>2017-02-04T09:43:17.000Z</published>
-    <updated>2017-02-07T12:47:04.877Z</updated>
+    <updated>2017-02-07T12:48:12.396Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前用的PC大限将至，即将随本科岁月一起成为过往。</p>
 <p>在寿终正寝之前，整理一份陪伴五年时光的程序清单。</p>
@@ -70,10 +70,12 @@
 <p><code>Visual Studio Code 1.8.1</code>（闲置中Orz）</p>
 <p><code>Typora 0.9.23</code>（markdown文件）</p>
 </blockquote>
-<h4 id="编译器-amp-解释器"><a href="#编译器-amp-解释器" class="headerlink" title="编译器 &amp; 解释器"></a>编译器 &amp; 解释器</h4><p><code>gcc 4.7.1</code></p>
+<h4 id="编译器-amp-解释器"><a href="#编译器-amp-解释器" class="headerlink" title="编译器 &amp; 解释器"></a>编译器 &amp; 解释器</h4><blockquote>
+<p><code>gcc 4.7.1</code></p>
 <p><code>jdk 1.8.0_73</code></p>
 <p><code>Python 3.4 &amp; 2.7</code></p>
 <p><code>PHP 7.0 &amp; 5.5</code></p>
+</blockquote>
 <h4 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h4><blockquote>
 <p><code>MySQL</code></p>
 <p><code>Git</code></p>
