@@ -54,11 +54,19 @@
 <p><code>Visual Studio Code 1.8.1</code>（闲置中Orz）</p>
 <p><code>Typora 0.9.23</code>（markdown文件）</p>
 </blockquote>
-<h4 id="编译器-amp-解释器"><a href="#编译器-amp-解释器" class="headerlink" title="编译器 &amp; 解释器"></a>编译器 &amp; 解释器</h4><pre><code>&gt; `gcc 4.7.1`
+<h4 id="编译器-amp-解释器"><a href="#编译器-amp-解释器" class="headerlink" title="编译器 &amp; 解释器"></a>编译器 &amp; 解释器</h4><pre><code>&gt; 
 &gt;
-&gt; `jdk1.8.0_73`
+&gt; `gcc 4.7.1`
+&gt;
+&gt; 
+&gt;
+&gt; `jdk 1.8.0_73`
+&gt;
+&gt; 
 &gt;
 &gt; `Python 3.4 &amp; 2.7`
+&gt;
+&gt; 
 &gt;
 &gt; `PHP 7.0 &amp; 5.5`
 </code></pre><h4 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h4><blockquote>
