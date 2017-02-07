@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Flintx</title>
   
+  <link href="/atom.xml" rel="self"/>
   
+  <link href="https://flintx.github.io/"/>
+  <updated>2017-02-07T10:31:14.513Z</updated>
+  <id>https://flintx.github.io/</id>
+  
+  <author>
+    <name>Flint Zhao</name>
     
-    <entry>
-      <title></title>
-      <url>https://flintx.github.io/2017/02/07/Blog-Logs/</url>
-      <content type="html"></content>
-    </entry>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://flintx.github.io/2017/02/07/Blog-Logs/"/>
+    <id>https://flintx.github.io/2017/02/07/Blog-Logs/</id>
+    <published>2017-02-07T08:41:29.703Z</published>
+    <updated>2017-02-07T10:31:14.513Z</updated>
     
-    <entry>
-      <title><![CDATA[PC程序清单 & 实用小工具]]></title>
-      <url>https://flintx.github.io/2017/02/04/tools-list/</url>
-      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前用的PC大限将至，即将随本科岁月一起成为过往。</p>
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PC程序清单 &amp; 实用小工具</title>
+    <link href="https://flintx.github.io/2017/02/04/tools-list/"/>
+    <id>https://flintx.github.io/2017/02/04/tools-list/</id>
+    <published>2017-02-04T09:43:17.000Z</published>
+    <updated>2017-02-04T09:57:03.982Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前用的PC大限将至，即将随本科岁月一起成为过往。</p>
 <p>在寿终正寝之前，整理一份陪伴五年时光的程序清单。</p>
 <a id="more"></a>
 <h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><hr>
@@ -40,12 +64,31 @@
 <p>​    PhpStorm 10.0.3</p>
 </blockquote>
 ]]></content>
-    </entry>
     
-    <entry>
-      <title><![CDATA[Hello, My Blog]]></title>
-      <url>https://flintx.github.io/2017/02/02/hello/</url>
-      <content type="html"><![CDATA[<h2 id="图片插入测试"><a href="#图片插入测试" class="headerlink" title="图片插入测试"></a>图片插入测试</h2><p><img src="http://okqi2ipwh.bkt.clouddn.com/39163751_p0.jpg" alt="a image"></p>
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;目前用的PC大限将至，即将随本科岁月一起成为过往。&lt;/p&gt;
+&lt;p&gt;在寿终正寝之前，整理一份陪伴五年时光的程序清单。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="https://flintx.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="工具" scheme="https://flintx.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="软件" scheme="https://flintx.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello, My Blog</title>
+    <link href="https://flintx.github.io/2017/02/02/hello/"/>
+    <id>https://flintx.github.io/2017/02/02/hello/</id>
+    <published>2017-02-02T04:23:44.000Z</published>
+    <updated>2017-02-07T08:38:28.753Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="图片插入测试"><a href="#图片插入测试" class="headerlink" title="图片插入测试"></a>图片插入测试</h2><p><img src="http://okqi2ipwh.bkt.clouddn.com/39163751_p0.jpg" alt="a image"></p>
 <a id="more"></a>
 <h2 id="代码高亮测试"><a href="#代码高亮测试" class="headerlink" title="代码高亮测试"></a>代码高亮测试</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">print(<span class="string">"hello, my blog"</span>)</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.math.BigInteger;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner cin = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		<span class="keyword">int</span> t = cin.nextInt();</div><div class="line">		<span class="keyword">int</span> i = <span class="number">1</span> ;</div><div class="line">		<span class="keyword">while</span>( i &lt;= t )&#123;</div><div class="line">			BigInteger a = cin.nextBigInteger();</div><div class="line">			BigInteger b = cin.nextBigInteger();</div><div class="line">			BigInteger c = a.mod(b) ;</div><div class="line">			<span class="keyword">if</span>( c == BigInteger.ZERO )</div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": divisible"</span>);</div><div class="line">			<span class="keyword">else</span></div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": not divisible"</span>);</div><div class="line">		&#125;</div><div class="line">		cin.close();</div><div class="line">		</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -58,8 +101,14 @@ n & \text{Left} & \text{Center} & \text{Right} \\
 3 & -20 & 2000 & 1+10i \\
 \end{array}</script><p>$ x^2 + y^2 = z_1 + z_{a2} $</p>
 ]]></content>
-    </entry>
     
+    <summary type="html">
+    
+      &lt;h2 id=&quot;图片插入测试&quot;&gt;&lt;a href=&quot;#图片插入测试&quot; class=&quot;headerlink&quot; title=&quot;图片插入测试&quot;&gt;&lt;/a&gt;图片插入测试&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://okqi2ipwh.bkt.clouddn.com/39163751_p0.jpg&quot; alt=&quot;a image&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
-  
-</search>
+</feed>
