@@ -54,6 +54,37 @@ n & \text{Left} & \text{Center} & \text{Right} \\
 ]]></content>
     </entry>
     
+    <entry>
+      <title><![CDATA[建站日志]]></title>
+      <url>https://flintx.github.io/2017/02/02/Blog-Logs/</url>
+      <content type="html"><![CDATA[<h2 id="2017-02-06"><a href="#2017-02-06" class="headerlink" title="2017 - 02 - 06"></a>2017 - 02 - 06</h2><ul>
+<li>增加多说评论功能、UA显示功能</li>
+<li>增加阅读次数统计功能（利用LeanCloud）</li>
+<li>添加<code>关于</code>、<code>分类</code>、<code>标签</code>页面</li>
+</ul>
+<h2 id="2017-02-04"><a href="#2017-02-04" class="headerlink" title="2017 - 02 - 04"></a>2017 - 02 - 04</h2><ul>
+<li>blog主题由NexT修改为yilia</li>
+<li>绑定域名<a href="flintx.me"></a></li>
+<li>blog主题由yilia修改为NexT</li>
+<li>外观Scheme由Pisces修改为Mist</li>
+<li>开启代码高亮功能</li>
+<li>开启MathJax数学公式支持</li>
+<li>更换部分字体，并将fonts api的host由google切换至中科大镜像</li>
+<li>使用七牛云作为图床</li>
+</ul>
+<h2 id="2017-02-03"><a href="#2017-02-03" class="headerlink" title="2017 - 02 - 03"></a>2017 - 02 - 03</h2><ul>
+<li>修改语言为中文</li>
+</ul>
+<h2 id="2017-02-02"><a href="#2017-02-02" class="headerlink" title="2017 - 02 - 02"></a>2017 - 02 - 02</h2><ul>
+<li>建立项目<a href="https://github.com/flintx/flintx.github.io" target="_blank" rel="external">flintx.github.io</a></li>
+<li>blog框架由Jekyll切换为Hexo</li>
+<li>使用NexT作为blog主题，并采用Pisces作为外观Scheme</li>
+<li>添加侧边栏社交link</li>
+<li>添加作者头像、描述</li>
+</ul>
+]]></content>
+    </entry>
+    
   
   
 </search>
