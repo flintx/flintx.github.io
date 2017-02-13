@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://flintx.github.io/about/index.html</loc>
+    
+    <lastmod>2017-02-13T06:45:38.527Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://flintx.github.io/2017/02/02/Blog-Logs/</loc>
     
     <lastmod>2017-02-08T12:52:47.895Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>https://flintx.github.io/tags/index.html</loc>
     
     <lastmod>2017-02-04T10:05:43.931Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://flintx.github.io/about/index.html</loc>
-    
-    <lastmod>2017-02-04T10:05:20.378Z</lastmod>
     
   </url>
   
