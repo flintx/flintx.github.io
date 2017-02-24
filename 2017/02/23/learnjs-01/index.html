@@ -104,16 +104,22 @@
 
 
 
-<meta name="description" content="参考 &amp;amp; 学习：廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程">
+<meta name="description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript学习笔记01（基本语法、数据类型、运算符）">
 <meta property="og:url" content="https://flintx.github.io/2017/02/23/learnjs-01/index.html">
 <meta property="og:site_name" content="Flintx">
-<meta property="og:description" content="参考 &amp;amp; 学习：廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程">
-<meta property="og:updated_time" content="2017-02-24T04:39:24.944Z">
+<meta property="og:description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta property="og:updated_time" content="2017-02-24T14:06:35.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript学习笔记01（基本语法、数据类型、运算符）">
-<meta name="twitter:description" content="参考 &amp;amp; 学习：廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程">
+<meta name="twitter:description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
 
 
 
@@ -431,7 +437,9 @@
 
       
         <blockquote>
-<p>参考 &amp; 学习：<br><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖老师的JavaScript教程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" target="_blank" rel="external">JavaScript 参考文档</a><br><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3School JavaScript 教程</a></p>
+<p>参考 &amp; 学习：</p>
+<p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖老师的JavaScript教程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" target="_blank" rel="external">JavaScript 参考文档</a><br><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3School JavaScript 教程</a></p>
+<p>由衷感谢这些资料的提供者与撰写者！</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="基本语法-amp-数据类型"><a href="#基本语法-amp-数据类型" class="headerlink" title="基本语法 &amp; 数据类型"></a>基本语法 &amp; 数据类型</h2><h3 id="变量名"><a href="#变量名" class="headerlink" title="变量名"></a>变量名</h3><ul>
@@ -444,14 +452,14 @@
 <li><p>如果需要存储多行字符串，可使用``来表示.</p>
 </li>
 <li><p>多个字符串的链接可以使用<code>+</code>操作符，或采用ES6新增的模板字符串.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> s = <span class="string">`Esl</span></div><div class="line">  Psy</div><div class="line">  Congroo`;</div><div class="line">  <span class="built_in">console</span>.log(s);</div><div class="line">  <span class="comment">/*</span></div><div class="line">* Esl</div><div class="line">* Psy</div><div class="line">* Congroo</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">var</span> name = <span class="string">'Flint'</span>;</div><div class="line"><span class="keyword">var</span> age = <span class="string">'22'</span>;</div><div class="line"><span class="keyword">var</span> s1 = <span class="string">'My name is '</span> + name + <span class="string">' and I\'m '</span> + age + <span class="string">' years old.'</span>;</div><div class="line"><span class="built_in">console</span>.log(s1); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line"><span class="keyword">var</span> s2 = <span class="string">`My name is <span class="subst">$&#123;name&#125;</span> and I\'m <span class="subst">$&#123;age&#125;</span> years old.`</span>;</div><div class="line"><span class="built_in">console</span>.log(s2); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line">s1 === s2; <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> s = <span class="string">`Esl</span></div><div class="line">   Psy</div><div class="line">   Congroo`;</div><div class="line">   <span class="built_in">console</span>.log(s);</div><div class="line">   <span class="comment">/*</span></div><div class="line">* Esl</div><div class="line">* Psy</div><div class="line">* Congroo</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">var</span> name = <span class="string">'Flint'</span>;</div><div class="line"><span class="keyword">var</span> age = <span class="string">'22'</span>;</div><div class="line"><span class="keyword">var</span> s1 = <span class="string">'My name is '</span> + name + <span class="string">' and I\'m '</span> + age + <span class="string">' years old.'</span>;</div><div class="line"><span class="built_in">console</span>.log(s1); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line"><span class="keyword">var</span> s2 = <span class="string">`My name is <span class="subst">$&#123;name&#125;</span> and I\'m <span class="subst">$&#123;age&#125;</span> years old.`</span>;</div><div class="line"><span class="built_in">console</span>.log(s2); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line">s1 === s2; <span class="comment">// true</span></div></pre></td></tr></table></figure>
 </li>
 <li><p><strong>注意</strong>：模板字符串仅可用于``包括的字符串.</p>
 </li>
 <li><p><strong>特别注意</strong>：字符串是不可变的，String 类定义的方法都不能改变字符串的内容。虽然对字符串的某个索引赋值不会有错误提示，但是也没有任何效果。诸如toUpperCase() 方法，返回的是全新的字符串，而不是修改原始字符串。</p>
 </li>
 <li><p>关于字符串的各种操作，今后使用中再进行整理归纳。</p>
-<p> 详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank" rel="external">JavaScript String 对象属性与方法</a></p>
+<p>  详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank" rel="external">JavaScript String 对象属性与方法</a></p>
 </li>
 </ul>
 <h3 id="数值（Number）"><a href="#数值（Number）" class="headerlink" title="数值（Number）"></a>数值（Number）</h3><ul>
@@ -576,6 +584,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/02/24/learnjs-02/" rel="prev" title="JavaScript学习笔记02（Map与Set、函数）">
+                JavaScript学习笔记02（Map与Set、函数） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -667,7 +679,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

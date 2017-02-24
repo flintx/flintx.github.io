@@ -1,28 +1,442 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Flintx</title>
+<!doctype html>
+
+
+
   
-  <link href="/atom.xml" rel="self"/>
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <link href="https://flintx.github.io/"/>
-  <updated>2017-02-24T14:06:30.498Z</updated>
-  <id>https://flintx.github.io/</id>
   
-  <author>
-    <name>Flint Zhao</name>
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>JavaScript学习笔记02（Map与Set、函数）</title>
-    <link href="https://flintx.github.io/2017/02/24/learnjs-02/"/>
-    <id>https://flintx.github.io/2017/02/24/learnjs-02/</id>
-    <published>2017-02-24T14:04:13.000Z</published>
-    <updated>2017-02-24T14:06:30.498Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,前端," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Flintx" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记02（Map与Set、函数）">
+<meta property="og:url" content="https://flintx.github.io/2017/02/24/learnjs-02/index.html">
+<meta property="og:site_name" content="Flintx">
+<meta property="og:description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta property="og:updated_time" content="2017-02-24T14:06:30.498Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记02（Map与Set、函数）">
+<meta name="twitter:description" content="参考 &amp;amp; 学习：
+廖老师的JavaScript教程JavaScript 参考文档W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6383207456964609000',
+      author: '作者'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://flintx.github.io/2017/02/24/learnjs-02/"/>
+
+
+
+
+
+  <title> JavaScript学习笔记02（Map与Set、函数） | Flintx </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=60614526";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Flintx</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://flintx.github.io/2017/02/24/learnjs-02/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Flint Zhao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/Azusa.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Flintx">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Flintx" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript学习笔记02（Map与Set、函数）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-24T22:04:13+08:00">
+                2017-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript学习/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/24/learnjs-02/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/24/learnjs-02/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/24/learnjs-02/" class="leancloud_visitors" data-flag-title="JavaScript学习笔记02（Map与Set、函数）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
 <p>参考 &amp; 学习：</p>
 <p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖老师的JavaScript教程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" target="_blank" rel="external">JavaScript 参考文档</a><br><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3School JavaScript 教程</a></p>
 <p>由衷感谢这些资料的提供者与撰写者！</p>
@@ -212,356 +626,682 @@
 <p>更多特性与使用技巧参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">MDN - Arrow Function</a></p>
 <h3 id="yield-关键字-与-generator-对象"><a href="#yield-关键字-与-generator-对象" class="headerlink" title="yield 关键字 与 generator 对象"></a>yield 关键字 与 generator 对象</h3><p>这个概念之前学Python时接触过。。懒得填这个坑了，将来接触 <code>function*</code> 和 <code>AJAX</code> 再单独写文章说明吧。。</p>
 <p>简单说调用 <code>generator</code> 的优势在于不立即执行并保存上次执行状态。</p>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/23/learnjs-01/" rel="next" title="JavaScript学习笔记01（基本语法、数据类型、运算符）">
+                <i class="fa fa-chevron-left"></i> JavaScript学习笔记01（基本语法、数据类型、运算符）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/02/24/learnjs-02/"
+     data-title="JavaScript学习笔记02（Map与Set、函数）"
+     data-content=""
+     data-url="https://flintx.github.io/2017/02/24/learnjs-02/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-    <summary type="html">
+      <div class="ds-thread" data-thread-key="2017/02/24/learnjs-02/"
+           data-title="JavaScript学习笔记02（Map与Set、函数）" data-url="https://flintx.github.io/2017/02/24/learnjs-02/">
+      </div>
     
-      &lt;blockquote&gt;
-&lt;p&gt;参考 &amp;amp; 学习：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&quot;&gt;廖老师的JavaScript教程&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference&quot;&gt;JavaScript 参考文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3school.com.cn/js/index.asp&quot;&gt;W3School JavaScript 教程&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;由衷感谢这些资料的提供者与撰写者！&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript学习" scheme="https://flintx.github.io/categories/JavaScript%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="JavaScript" scheme="https://flintx.github.io/tags/JavaScript/"/>
-    
-      <category term="前端" scheme="https://flintx.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
+  </div>
+
+
+        </div>
+        
+          
   
-  <entry>
-    <title>JavaScript学习笔记01（基本语法、数据类型、运算符）</title>
-    <link href="https://flintx.github.io/2017/02/23/learnjs-01/"/>
-    <id>https://flintx.github.io/2017/02/23/learnjs-01/</id>
-    <published>2017-02-23T04:40:58.000Z</published>
-    <updated>2017-02-24T14:06:35.686Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>参考 &amp; 学习：</p>
-<p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖老师的JavaScript教程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" target="_blank" rel="external">JavaScript 参考文档</a><br><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3School JavaScript 教程</a></p>
-<p>由衷感谢这些资料的提供者与撰写者！</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="基本语法-amp-数据类型"><a href="#基本语法-amp-数据类型" class="headerlink" title="基本语法 &amp; 数据类型"></a>基本语法 &amp; 数据类型</h2><h3 id="变量名"><a href="#变量名" class="headerlink" title="变量名"></a>变量名</h3><ul>
-<li>变量名是大小写英文、数字、<code>$</code>和<code>_</code>的组合，且不能用数字开头，使用var进行基本赋值：<code>var x = 1;</code></li>
-</ul>
-<h3 id="字符串（String）"><a href="#字符串（String）" class="headerlink" title="字符串（String）"></a>字符串（String）</h3><ul>
-<li><p>字符串（String）类型可以使用单引号<code>&#39;</code>或双引号<code>&quot;</code>来指示文本范围，并且可以在单引号中使用双引号，或是双引号中使用单引号。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">"My name is '233', and you?"</span>); <span class="comment">// My name is '233', and you?</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'Nice to meet you, "666"'</span>); <span class="comment">// Nice to meet you, "666"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要存储多行字符串，可使用``来表示.</p>
-</li>
-<li><p>多个字符串的链接可以使用<code>+</code>操作符，或采用ES6新增的模板字符串.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> s = <span class="string">`Esl</span></div><div class="line">   Psy</div><div class="line">   Congroo`;</div><div class="line">   <span class="built_in">console</span>.log(s);</div><div class="line">   <span class="comment">/*</span></div><div class="line">* Esl</div><div class="line">* Psy</div><div class="line">* Congroo</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">var</span> name = <span class="string">'Flint'</span>;</div><div class="line"><span class="keyword">var</span> age = <span class="string">'22'</span>;</div><div class="line"><span class="keyword">var</span> s1 = <span class="string">'My name is '</span> + name + <span class="string">' and I\'m '</span> + age + <span class="string">' years old.'</span>;</div><div class="line"><span class="built_in">console</span>.log(s1); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line"><span class="keyword">var</span> s2 = <span class="string">`My name is <span class="subst">$&#123;name&#125;</span> and I\'m <span class="subst">$&#123;age&#125;</span> years old.`</span>;</div><div class="line"><span class="built_in">console</span>.log(s2); <span class="comment">// My name is Flint and I'm 22 years old.</span></div><div class="line">s1 === s2; <span class="comment">// true</span></div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>注意</strong>：模板字符串仅可用于``包括的字符串.</p>
-</li>
-<li><p><strong>特别注意</strong>：字符串是不可变的，String 类定义的方法都不能改变字符串的内容。虽然对字符串的某个索引赋值不会有错误提示，但是也没有任何效果。诸如toUpperCase() 方法，返回的是全新的字符串，而不是修改原始字符串。</p>
-</li>
-<li><p>关于字符串的各种操作，今后使用中再进行整理归纳。</p>
-<p>  详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_string.asp" target="_blank" rel="external">JavaScript String 对象属性与方法</a></p>
-</li>
-</ul>
-<h3 id="数值（Number）"><a href="#数值（Number）" class="headerlink" title="数值（Number）"></a>数值（Number）</h3><ul>
-<li><p>基本类型包括：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="number">123</span>; <span class="comment">// 整数123</span></div><div class="line"><span class="number">0.456</span>; <span class="comment">// 浮点数0.456</span></div><div class="line"><span class="number">6.66666e4</span>; <span class="comment">// 科学计数法表示的6.66666x10^4，等同于66666.6</span></div><div class="line"><span class="number">-789</span>; <span class="comment">// 负数</span></div><div class="line"><span class="literal">NaN</span>; <span class="comment">// NaN表示Not a Number，当无法计算结果时用NaN表示</span></div><div class="line"><span class="literal">Infinity</span>; <span class="comment">// Infinity表示无限大，当数值超过了最大值时，就表示为Infinity</span></div><div class="line"></div><div class="line"><span class="comment">/*基本运算*/</span></div><div class="line"><span class="number">1</span> + <span class="number">1</span>; <span class="comment">// 2</span></div><div class="line"><span class="number">4</span> - <span class="number">5.1</span>; <span class="comment">// -1.0999999999999996</span></div><div class="line"><span class="number">3</span> / <span class="number">2</span> <span class="comment">// 1.5, JS中没有整除运算，需要整除运算可使用Math.floor或Math.ceil</span></div><div class="line"><span class="number">5</span> % <span class="number">3</span> <span class="comment">// 2, 取余数</span></div><div class="line"><span class="number">7.5</span> % <span class="number">1</span> <span class="comment">// 0.5, 浮点数亦可</span></div><div class="line"><span class="number">2</span> / <span class="number">0</span>; <span class="comment">// Infinity</span></div><div class="line"><span class="number">0</span> / <span class="number">0</span>; <span class="comment">// NaN</span></div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>值得注意的是，JS的浮点数运算有一个固有bug，即精度误差：<code>0.1 + 0.2 == 0.3</code> 返回结果为<code>false</code>，利用<code>console.log(0.2 + 0.1)</code>，得到结果<code>0.30000000000000004</code>。这是由于二进制运算机制造成的（部分小数无法用有限位二进制表示，比如<code>0.1</code> <code>0.33</code> 等），几乎所有的编程语言都会有类似精度误差的问题，包括C/C++/Java/Python等。解决此类问题可以参考<a href="http://madscript.com/javascript/javscript-float-number-compute-problem/" target="_blank" rel="external">通过isEqual工具方法判断数值是否相等</a>，或者给出明确的精度要求：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 利用fix</span></div><div class="line"><span class="number">0.1</span> + <span class="number">0.2</span> === <span class="number">0.3</span> <span class="comment">// false</span></div><div class="line"><span class="built_in">parseFloat</span>((<span class="number">0.1</span> + <span class="number">0.2</span>).toFixed(<span class="number">2</span>)) === <span class="number">0.3</span>; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 利用abs</span></div><div class="line"><span class="number">1</span> / <span class="number">3</span> === (<span class="number">1</span> - <span class="number">2</span> / <span class="number">3</span>); <span class="comment">// false</span></div><div class="line"><span class="built_in">Math</span>.abs(<span class="number">1</span> / <span class="number">3</span> - (<span class="number">1</span> - <span class="number">2</span> / <span class="number">3</span>)) &lt; <span class="number">0.0000001</span>; <span class="comment">// true</span></div><div class="line"><span class="built_in">Math</span>.abs(<span class="number">1</span> / <span class="number">3</span> - (<span class="number">1</span> - <span class="number">2</span> / <span class="number">3</span>)) &lt; <span class="number">1e-7</span>; <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>此外，JS中所有数字均为<strong>64</strong>位。</p>
-<p>详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_number.asp" target="_blank" rel="external">JavaScript Number 对象属性与方法</a></p>
-</li>
-</ul>
-<h3 id="布尔（Boolean）"><a href="#布尔（Boolean）" class="headerlink" title="布尔（Boolean）"></a>布尔（Boolean）</h3><ul>
-<li><p>布尔（Boolean）类型只有<code>true</code>、<code>false</code>两种值，以及与<code>&amp;&amp;</code>或<code>||</code>非<code>!</code>三种运算。</p>
-<p>详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_boolean.asp" target="_blank" rel="external">JavaScript Boolean 对象属性与方法</a></p>
-</li>
-</ul>
-<h3 id="“空”（undefined、null）"><a href="#“空”（undefined、null）" class="headerlink" title="“空”（undefined、null）"></a>“空”（undefined、null）</h3><ul>
-<li>JS中有两种表示”空”的类型，即<code>null</code>与<code>undefined</code>，类似于C/C++的<code>NULL</code>或Python的<code>None</code>。其中<code>null</code>表示一个空的值，而<code>undefined</code>表示值未定义。</li>
-<li><code>null</code>不同于<code>0</code>以及<code>&#39;&#39;</code>，<code>0</code>是数值0，<code>&#39;&#39;</code>表示长度为0的字符串</li>
-</ul>
-<h3 id="数组（Array）"><a href="#数组（Array）" class="headerlink" title="数组（Array）"></a>数组（Array）</h3><ul>
-<li><p>数组（Array）类型与Python的list比较相似，可以存储不同数据类型的元素，并能直接用[]操作符或<code>new Array()</code>方法来构造一个数组。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array = [<span class="string">'dog'</span>, <span class="string">'利'</span>, <span class="string">'郭嘉'</span>, <span class="string">'live'</span> === <span class="string">'die'</span>, <span class="number">1</span>];</div><div class="line"><span class="built_in">console</span>.log(array); <span class="comment">// ["dog", "利", "郭嘉", false, 1]</span></div><div class="line"><span class="built_in">console</span>.log(array.length); <span class="comment">// 5</span></div><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(array, <span class="string">'Not because of bad fortune to avoid the trend'</span>, <span class="string">'haha'</span>);</div><div class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [Array[5], "Not because of bad fortune to avoid the trend", "haha"]</span></div><div class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 3</span></div><div class="line">arr[<span class="number">0</span>]; <span class="comment">// ["dog", "利", "郭嘉", false, 1]</span></div><div class="line">arr[<span class="number">1</span>]; <span class="comment">// "Not because of bad fortune to avoid the trend"</span></div><div class="line">arr[<span class="number">3</span>]; <span class="comment">// undefined, 超出索引范围返回undefined</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>详细资料：<a href="http://www.w3school.com.cn/jsref/jsref_obj_array.asp" target="_blank" rel="external">JavaScript Array 对象属性与方法</a></p>
-</li>
-</ul>
-<h3 id="对象（Object）"><a href="#对象（Object）" class="headerlink" title="对象（Object）"></a>对象（Object）</h3><ul>
-<li><p>对象（Object）感觉更像Python里面的dict，是一种无序的集合数据类型，由若干<code>(key: value)</code>的键值对组成。</p>
-</li>
-<li><p>基本上 JavaScript 里的任何东西都是对象。</p>
-</li>
-<li><p>用面向对象（Object - Oriented）的观点来看，对象由属性与方法组成，其本质上也还是键值对，即<code>(属性名/PropertyName: 属性值)</code> 与 <code>(方法名/MethodName: 函数表达式或Function对象)</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myDog = &#123;</div><div class="line">  	<span class="attr">name</span>: <span class="string">'233'</span>,</div><div class="line">  	<span class="attr">age</span>: <span class="number">3</span>,</div><div class="line">  	<span class="string">'back-color'</span>: <span class="number">0x3f3f3f</span>, <span class="comment">// 如果属性名包含特殊字符，必须使用''括起来</span></div><div class="line">  	bark: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"汪汪汪!"</span>);</div><div class="line">  	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/*访问对象属性与方法*/</span></div><div class="line"><span class="built_in">console</span>.log(myDog.name); <span class="comment">// 通过.操作符访问对象属性</span></div><div class="line"><span class="built_in">console</span>.log(myDog[<span class="string">'age'</span>]); <span class="comment">// 通过[]操作符访问对象属性</span></div><div class="line"><span class="built_in">console</span>.log(myDog[<span class="string">'back-color'</span>]); <span class="comment">// 若属性名包含特殊字符, 则只能用[]操作符来访问</span></div><div class="line">myDog.bark(); <span class="comment">// 通过.操作符访问对象方法</span></div><div class="line"><span class="built_in">console</span>.log(myDog.girlfrind); <span class="comment">// undefined, 不存在该属性</span></div><div class="line"></div><div class="line"><span class="comment">/*增删对象属性与方法*/</span></div><div class="line">myDog.girlfrind = <span class="string">'666'</span>; <span class="comment">// 新增一个girlfriend属性</span></div><div class="line"><span class="built_in">console</span>.log(myDog.girlfriend); <span class="comment">// 666</span></div><div class="line">myDog.girlfriend = <span class="string">'QAQ'</span>; <span class="comment">// 修改girlfriend属性</span></div><div class="line"><span class="built_in">console</span>.log(myDog.girlfriend); <span class="comment">// QAQ</span></div><div class="line"><span class="keyword">delete</span> myDog.girlfriend; <span class="comment">// 删除girlfriend属性, delete myDog['girlfrind']亦可</span></div><div class="line"><span class="built_in">console</span>.log(myDog.girlfriend); <span class="comment">// undefined, 不存在该属性</span></div><div class="line"></div><div class="line"><span class="comment">/*验证对象是否存在某属性或方法*/</span></div><div class="line"></div><div class="line"><span class="comment">// 检测对象是否拥有某一属性，可以用in操作符</span></div><div class="line"><span class="string">'name'</span> <span class="keyword">in</span> myDog; <span class="comment">// true</span></div><div class="line"><span class="string">'girlfriend'</span> <span class="keyword">in</span> myDog; <span class="comment">// false</span></div><div class="line"><span class="string">'toString'</span> <span class="keyword">in</span> myDog; <span class="comment">// true, 该属性继承自object对象</span></div><div class="line"></div><div class="line"><span class="comment">// 判断一个属性是否为对象自身拥有，而非继承得到，可使用hasOwnProperty()方法</span></div><div class="line">myDog.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// true</span></div><div class="line">myDog.hasOwnProperty(<span class="string">'toString'</span>); <span class="comment">// false</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="条件判断-amp-循环控制"><a href="#条件判断-amp-循环控制" class="headerlink" title="条件判断 &amp; 循环控制"></a>条件判断 &amp; 循环控制</h2><h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><p>条件判断，与多数编程语言大同小异，就是<code>if</code> <code>else</code> <code>else if</code>，以及<code>switch</code>,并且支持嵌套。</p>
-<p>需要注意的就是<code>if</code>后的条件判断语句，一般是值为 <code>true</code> 或 <code>false</code> 的表达式，但JavaScript并没有像Java一样强制要求是逻辑判断表达式，条件语句的位置可能会有其他语句出现。</p>
-<p>于是有如下准则：</p>
-<blockquote>
-<p>所有<strong>不是</strong> <code>undefined</code>、<code>null</code>、<code>0</code>、<code>NaN</code>、空字符串 (<code>&quot;&quot;</code>) 的任意对象，包括值为<code>false</code>的Boolean对象， 在条件语句中都为<strong>true</strong>。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">if</span> (b) <span class="comment">// 表达式的值为true</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line"><span class="comment">/* </span></div><div class="line"> * 反观C++，若bool b = false;</div><div class="line"> * 则if (b) 表达式值为false.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">var</span> s = <span class="string">'123'</span>;</div><div class="line"><span class="keyword">var</span> es = <span class="string">''</span>;</div><div class="line"><span class="keyword">if</span> (s.length) &#123; <span class="comment">// 条件计算结果为3, 表达式值为true</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (s) &#123; <span class="comment">// '123'表达式值为true</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (es) &#123; <span class="comment">// ''表达式值为false</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> zero = <span class="number">0</span>;</div><div class="line"><span class="keyword">if</span> (zero) <span class="comment">// 表达式结果为false</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line"><span class="keyword">if</span> (!zero) <span class="comment">// 表达式结果为true</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// !!!这仅是实验，极其不推荐在条件表达式中单纯的使用赋值语句</span></div><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>, y = <span class="number">0</span>;</div><div class="line"><span class="keyword">if</span> (x = y) <span class="comment">// 表达式结果为false</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>, y = <span class="number">2</span>;</div><div class="line"><span class="keyword">if</span> (x = y) <span class="comment">// 表达式结果为true</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">true</span>);</div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="literal">false</span>);</div><div class="line"><span class="comment">// 在赋值语句作为条件表达式的情况下，先执行赋值语句，然后将赋值后对象作为条件</span></div></pre></td></tr></table></figure>
-<p>总结一下，就是：</p>
-<blockquote>
-<p>尽量使用值为 true 或 false 的逻辑表达式作为condition</p>
-<p>“空”（<code>undefined</code>、<code>null</code>、<code>0</code>、<code>NaN</code>、<code>&quot;&quot;</code>）的东西是<strong>false</strong>，除此之外一切对象皆为<strong>true</strong>。</p>
-</blockquote>
-<h3 id="迭代器for"><a href="#迭代器for" class="headerlink" title="迭代器for"></a>迭代器<code>for</code></h3><p>迭代器<code>for</code>的使用方式和C++/Java基本一致（除了赋值语句）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> ([initialization]; [condition]; [final-expression])</div><div class="line">   statement</div><div class="line"></div><div class="line"><span class="comment">/*example*/</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  <span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">*/</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</div><div class="line">    <span class="keyword">continue</span>;</div><div class="line">  <span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">1</div><div class="line">3</div><div class="line">*/</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  <span class="keyword">if</span> (i &gt; <span class="number">2</span>)</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="built_in">console</span>.log(i);</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">0</div><div class="line">1</div><div class="line">2</div><div class="line">*/</div></pre></td></tr></table></figure>
-<h3 id="迭代器for-in"><a href="#迭代器for-in" class="headerlink" title="迭代器for ... in"></a>迭代器<code>for ... in</code></h3><p>迭代器<code>for ... in</code>用于以<strong>任意序</strong>迭代一个对象的可枚举属性，其迭代顺序依赖于执行环境。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Flint'</span>,</div><div class="line">    <span class="attr">age</span>: <span class="number">22</span>,</div><div class="line">  	<span class="attr">sex</span>: <span class="string">'male'</span>,</div><div class="line">    <span class="attr">city</span>: <span class="string">'Wuhan'</span>,</div><div class="line">  	<span class="attr">cry</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'QAQ'</span>);</div><div class="line">  	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</div><div class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123; <span class="comment">// 过滤掉继承的属性</span></div><div class="line">      <span class="built_in">console</span>.log(key); <span class="comment">// 'name', 'age', 'sex', 'city', 'cry'.</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="string">'H'</span>, <span class="string">'He'</span>, <span class="string">'Li'</span>, <span class="string">'Be'</span>, <span class="string">'B'</span>];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// '0', '1', '2', '3', '4'. 注意i是string不是number</span></div><div class="line">  <span class="built_in">console</span>.log(arr[i]); <span class="comment">// 'H', 'He', 'Li', 'Be', 'B'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="迭代器for-of"><a href="#迭代器for-of" class="headerlink" title="迭代器for ... of"></a>迭代器<code>for ... of</code></h3><p><code>for ... of</code>语句是在可迭代对象基础上创建的一个循环。不同于<code>for ... in</code>遍历对象属性的名称，<code>for ... of</code>仅遍历一个对象的可迭代部分并且直接遍历属性值而非属性名。区别如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>, <span class="string">'dog'</span>];</div><div class="line">arr.name = <span class="string">'alpha'</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(key); <span class="comment">// '0', '1', '2', '3', 'name'</span></div><div class="line">  <span class="built_in">console</span>.log(arr[key]) <span class="comment">// 'apple', 'banana', 'cat', 'dog', 'alpha'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(key) <span class="comment">// 'apple', 'banana', 'cat', 'dog'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="forEach-方法"><a href="#forEach-方法" class="headerlink" title="forEach()方法"></a><code>forEach()</code>方法</h3><p><code>forEach</code>是大部分可迭代对象<code>iterable</code>内置的一个方法，是一种比较推荐的遍历方式。</p>
-<p>原型如下（以<code>Array</code>为例）：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">array.forEach(callback(currentValue, index, array)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;, <span class="keyword">this</span>)</div><div class="line"><span class="comment">// or</span></div><div class="line">array.forEach(callback[, thisArg])</div></pre></td></tr></table></figure>
-<blockquote>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
-<li><p><code>callback</code>为数组中每个元素执行的函数，该函数接收三个参数：</p>
-<ul>
-<li><code>currentValue(当前值)</code> ：数组中正在处理的当前元素。</li>
-<li><code>index(索引)</code> ：数组中正在处理的当前元素的索引。</li>
-<li><code>array</code> ：<code>forEach()</code>方法正在操作的数组。 </li>
-</ul>
-</li>
-<li><p><code>thisArg</code>为可选参数。当执行回调函数时用作<code>this</code>值。</p>
-<p>​</p>
-</li>
-</ul>
-<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><ul>
-<li><code>undefined</code></li>
-</ul>
-</blockquote>
-<p>使用示范：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'cat'</span>, <span class="string">'dog'</span>];</div><div class="line">arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, array</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'arr['</span> + index + <span class="string">'] = '</span> + element);</div><div class="line">&#125;);</div><div class="line"><span class="comment">/*</span></div><div class="line"> * arr[0] = apple</div><div class="line"> * arr[1] = banana</div><div class="line"> * arr[2] = cat</div><div class="line"> * arr[3] = dog</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">logArrayElements</span>(<span class="params">item, i, arr</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'array['</span> + i + <span class="string">'] = '</span> + item + <span class="string">";"</span>);</div><div class="line">  <span class="keyword">if</span> (i === arr.length - <span class="number">1</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'array is : '</span> + arr);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">[<span class="string">'Aa'</span>, <span class="string">'Bb'</span>, <span class="string">'Cc'</span>].forEach(logArrayElements);</div><div class="line"><span class="comment">/*</span></div><div class="line"> * array[0] = Aa;</div><div class="line"> * array[1] = Bb;</div><div class="line"> * array[2] = Cc;</div><div class="line"> * array is : Aa,Bb,Cc</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">// Set与Map的forEach()方法各有其定义</span></div><div class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="literal">undefined</span>]);</div><div class="line">s.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, sameValue, set</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;value&#125;</span> and <span class="subst">$&#123;sameValue&#125;</span>;`</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// A and A;</span></div><div class="line"><span class="comment">// B and B;</span></div><div class="line"><span class="comment">// C and C;</span></div><div class="line"><span class="comment">// undefined and undefined;</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'No.1'</span>, <span class="string">'Alice'</span>], [<span class="string">'No.2'</span>, <span class="string">'Bob'</span>], [<span class="string">'No.3'</span>, <span class="string">'Candy'</span>]]);</div><div class="line">m.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, key, map</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span> ==&gt; <span class="subst">$&#123;value&#125;</span>;`</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// No.1 ==&gt; Alice;</span></div><div class="line"><span class="comment">// No.2 ==&gt; Bob;</span></div><div class="line"><span class="comment">// No.3 ==&gt; Candy;</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;参考 &amp;amp; 学习：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000&quot;&gt;廖老师的JavaScript教程&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference&quot;&gt;JavaScript 参考文档&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.w3school.com.cn/js/index.asp&quot;&gt;W3School JavaScript 教程&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;由衷感谢这些资料的提供者与撰写者！&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript学习" scheme="https://flintx.github.io/categories/JavaScript%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="JavaScript" scheme="https://flintx.github.io/tags/JavaScript/"/>
-    
-      <category term="前端" scheme="https://flintx.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/Azusa.jpg"
+               alt="Flint Zhao" />
+          <p class="site-author-name" itemprop="name">Flint Zhao</p>
+          <p class="site-description motion-element" itemprop="description">鲜衣怒马少年时</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flintx" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/FlintZhao" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/flintx" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/flintx" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/qq_15714857" title="CSDN博客" target="_blank">CSDN博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://flintx.me/2017/02/02/Blog-Logs/" title="建站日志" target="_blank">建站日志</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-与-Set"><span class="nav-number">1.</span> <span class="nav-text">Map 与 Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.2.</span> <span class="nav-text">Set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中的函数"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的定义方式"><span class="nav-number">2.1.</span> <span class="nav-text">函数的定义方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arguments关键字与rest参数"><span class="nav-number">2.2.</span> <span class="nav-text">arguments关键字与rest参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域问题"><span class="nav-number">2.3.</span> <span class="nav-text">作用域问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this关键字"><span class="nav-number">2.4.</span> <span class="nav-text">this关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高阶函数"><span class="nav-number">2.5.</span> <span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#map-reduce"><span class="nav-number">2.5.1.</span> <span class="nav-text">map/reduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter"><span class="nav-number">2.5.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort"><span class="nav-number">2.5.3.</span> <span class="nav-text">sort</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包（Closure）"><span class="nav-number">2.6.</span> <span class="nav-text">闭包（Closure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrow-Function"><span class="nav-number">2.7.</span> <span class="nav-text">Arrow Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield-关键字-与-generator-对象"><span class="nav-number">2.8.</span> <span class="nav-text">yield 关键字 与 generator 对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text"> </span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <entry>
-    <title>PC程序清单 &amp; 实用小工具</title>
-    <link href="https://flintx.github.io/2017/02/04/tools-list/"/>
-    <id>https://flintx.github.io/2017/02/04/tools-list/</id>
-    <published>2017-02-04T09:43:17.000Z</published>
-    <updated>2017-02-22T07:36:51.014Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>目前用的PC大限将至，即将随本科岁月一起成为过往。</p>
-<p>在寿终正寝之前，整理一份陪伴五年时光的程序清单。</p>
-<a id="more"></a>
-<h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><hr>
-<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><blockquote>
-<p><code>Google Chrome</code></p>
-<p><code>Mozilla Firefox</code></p>
-</blockquote>
-<h3 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h3><blockquote>
-<p><code>网易云音乐</code></p>
-</blockquote>
-<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><blockquote>
-<p><code>PotPlayer</code></p>
-</blockquote>
-<h3 id="聊天"><a href="#聊天" class="headerlink" title="聊天"></a>聊天</h3><blockquote>
-<p><code>QQ轻聊版</code></p>
-</blockquote>
-<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><blockquote>
-<p><code>迅雷极速版</code></p>
-<p><code>百度云客户端</code></p>
-<p><code>µTorrent 2.0.4</code> </p>
-</blockquote>
-<h3 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h3><blockquote>
-<p><code>Steam</code></p>
-<p><code>TGP</code></p>
-<p><code>UPlay</code></p>
-</blockquote>
-<h3 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h3><h4 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h4><blockquote>
-<p><strong>C/C++/C#:</strong></p>
-<p>​    <code>Dev C++ 4.9.9.2</code></p>
-<p>​    <code>Code::Blocks IDE 16.1.1.0</code></p>
-<p>​    <code>Microsoft Visual Studio 14.0</code></p>
-<p><strong>Java:</strong></p>
-<p>​    <code>IntelliJ IDEA 15.0.2</code></p>
-<p>​    <code>Android Studio 2.2</code></p>
-<p>​    <code>Eclipse Java Mars</code></p>
-<p><strong>Python:</strong></p>
-<p>​    <code>PyCharm 2016.1</code></p>
-<p><strong>PHP:</strong></p>
-<p>​    <code>PhpStorm 10.0.3</code></p>
-</blockquote>
-<h4 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h4><blockquote>
-<p><code>Notepad++ 6.9.2</code> （普通文本处理）</p>
-<p><code>gVim 7.4</code>（单文件程序、算法demo编写）</p>
-<p><code>Sublime text 3</code>（前端处理）</p>
-<p><code>Visual Studio Code 1.8.1</code>（闲置中Orz）</p>
-<p><code>Typora 0.9.23</code>（markdown文件）</p>
-</blockquote>
-<h4 id="编译器-amp-解释器"><a href="#编译器-amp-解释器" class="headerlink" title="编译器 &amp; 解释器"></a>编译器 &amp; 解释器</h4><blockquote>
-<p><code>gcc 4.7.1</code></p>
-<p><code>jdk 1.8.0_73</code></p>
-<p><code>Python 3.4 &amp; 2.7</code></p>
-<p><code>PHP 7.0 &amp; 5.5</code></p>
-</blockquote>
-<h4 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h4><blockquote>
-<p><code>MySQL</code></p>
-<p><code>Git</code></p>
-<p><code>Node.js</code></p>
-<p><code>Apache 2.4</code></p>
-<p>…</p>
-</blockquote>
-<h3 id="学习-研究"><a href="#学习-研究" class="headerlink" title="学习/研究"></a>学习/研究</h3><blockquote>
-<p><code>Microsoft Office 2016</code> （文档处理）</p>
-<p><code>Microsoft Visio 2016</code> （绘图）</p>
-<p><code>MATLAB R2016a</code>（科学计算、图像处理）</p>
-<p><code>Acrobat Reader DC</code>（pdf阅读）</p>
-<p><code>VMware Workstation Pro 12.1</code>（虚拟机）</p>
-<p><code>Adobe Photoshop CS6</code> （表情包制作【???】）</p>
-</blockquote>
-<h3 id="实用小工具"><a href="#实用小工具" class="headerlink" title="实用小工具"></a>实用小工具</h3><blockquote>
-<p>本地文件检索：</p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/Everything-1.3.4.686.x64.Multilingual-Setup.exe" target="_blank" rel="external">Everything.exe</a></p>
-<p>电脑色温控制：</p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/flux-setup.exe" target="_blank" rel="external">flux.exe</a></p>
-<p>host修改器：</p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/tool.exe" target="_blank" rel="external">HostTool.exe</a></p>
-<p>源码可参考(<a href="https://github.com/HostsTools/Windows" target="_blank" rel="external">https://github.com/HostsTools/Windows</a>)</p>
-<p>Windows字体渲染：</p>
-<p><a href="http://www.mactype.net/" target="_blank" rel="external">MacType</a></p>
-<p>截图:</p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/Snipaste-1.11.3-x64.zip" target="_blank" rel="external">Snipaste.exe</a></p>
-<p>最喜欢的两款字体：</p>
-<p><a href="https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" target="_blank" rel="external">Source Code Pro</a></p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/MONACO.TTF" target="_blank" rel="external">Moncao</a></p>
-<p>MinGW编译器：</p>
-<p><a href="http://okqi2ipwh.bkt.clouddn.com/mingw-get-setup.exe" target="_blank" rel="external">mingw-get-setup.exe</a></p>
-</blockquote>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="vimrc"><a href="#vimrc" class="headerlink" title="vimrc"></a>vimrc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div></pre></td><td class="code"><pre><div class="line">source $VIMRUNTIME/mswin.vim</div><div class="line"></div><div class="line">behave mswin</div><div class="line">set nocompatible</div><div class="line">set nobackup</div><div class="line">set ignorecase</div><div class="line">syn on</div><div class="line">&quot;set t_Co=256 </div><div class="line">colo molokai</div><div class="line">set hlsearch</div><div class="line">filetype indent on</div><div class="line">se ru nu ar sw=4 ts=4 noswf et sta nowrap ww=&lt;,&gt;,[,] gfn=Source_Code_Pro_Medium:h14:cANSI</div><div class="line">set shiftwidth=4</div><div class="line">set tabstop=4</div><div class="line"></div><div class="line">&quot;高亮当前行</div><div class="line">&quot;set cursorline</div><div class="line"></div><div class="line">&quot;统计字数</div><div class="line">map &lt;Enter&gt;&lt;Enter&gt; g&lt;c-G&gt;</div><div class="line"></div><div class="line">&quot;隐藏工具栏与菜单栏</div><div class="line">&quot;set guioptions-=m</div><div class="line">set guioptions-=T</div><div class="line">set guioptions-=r</div><div class="line">set guioptions-=L</div><div class="line"></div><div class="line">autocmd BufEnter * lcd %:p:h</div><div class="line"></div><div class="line"></div><div class="line">imap &lt;c-d&gt; &lt;c-o&gt;dd</div><div class="line">imap &lt;c-]&gt; &#123;&lt;cr&gt;&#125;&lt;c-o&gt;O&lt;left&gt;&lt;right&gt;</div><div class="line">imap &lt;c-k&gt; &lt;up&gt;</div><div class="line">imap &lt;c-j&gt; &lt;down&gt;</div><div class="line">imap &lt;c-h&gt; &lt;left&gt;</div><div class="line">imap &lt;c-l&gt; &lt;right&gt;</div><div class="line">imap &lt;c-tab&gt; &lt;esc&gt;gt</div><div class="line">imap &lt;cr&gt; &lt;cr&gt;&lt;left&gt;&lt;right&gt;</div><div class="line"></div><div class="line">inoremap ( ()&lt;left&gt;</div><div class="line">inoremap [ []&lt;left&gt;</div><div class="line"></div><div class="line">noremap &lt;F6&gt; =a&#123;</div><div class="line"></div><div class="line">map &lt;F7&gt; :g/^\s*$/d&lt;CR&gt;</div><div class="line">map &lt;c-t&gt; :tabnew&lt;CR&gt;</div><div class="line">map &lt;F3&gt; :e test.cpp&lt;CR&gt;</div><div class="line">map &lt;F9&gt; :call CR()&lt;CR&gt;&lt;CR&gt;</div><div class="line">func CR()</div><div class="line">exec &apos;update&apos;</div><div class="line">if &amp;filetype == &quot;java&quot;  </div><div class="line">    exec &quot;!javac % &amp;&amp; java %&lt;&quot; </div><div class="line">elseif &amp;filetype == &quot;python&quot;</div><div class="line">    exec &quot;!python %&quot;</div><div class="line">else</div><div class="line">    exec &apos;!g++ %&lt;.cpp -o %&lt; &amp;&amp; %&lt;&apos;</div><div class="line">endif</div><div class="line">endfunc</div><div class="line">map &lt;f2&gt; :call SetTitle()&lt;CR&gt;Gkkk</div><div class="line">func SetTitle()</div><div class="line">let l = 0</div><div class="line">let l = l + 1 | call setline(l, &apos;/*&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;Creat Time:&apos;.strftime(&apos;%c&apos;))</div><div class="line">let l = l + 1 | call setline(l, &apos;*/&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;//#pragma comment(linker, &quot;/STACK:102400000,102400000&quot;)&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;iostream&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;cstdio&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;cstring&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;cstdlib&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;cmath&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;algorithm&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;functional&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;string&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;map&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;set&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;vector&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;queue&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;stack&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;bitset&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;ctime&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;using namespace std;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define clr( x , y ) memset(x,y,sizeof(x))&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define cls( x ) memset(x,0,sizeof(x))&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define pr( x ) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; endl &apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define pri( x ) cout &lt;&lt; #x &lt;&lt; &quot; = &quot; &lt;&lt; x &lt;&lt; &quot; &quot; &apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define test( t ) int t ; cin &gt;&gt; t ; int kase = 1 ; while( t-- )&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define out( kase ) printf( &quot;Case %d: &quot; , kase++ )&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define sqr( x ) ( x * x )&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define mp make_pair&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define pii pair&lt;int,int&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define fi first&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define se second&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;#define pb push_back&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;typedef long long lint;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;const double eps = 1e-8 ;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;const int inf = 0x3f3f3f3f ;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;const long long INF = 0x3f3f3f3f3f3f3f3fLL ;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;int main()&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&#123;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    //freopen(&quot;my.in&quot;,&quot;r&quot;,stdin);&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    //freopen(&quot;my.out&quot;,&quot;w&quot;,stdout);&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    return 0;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&#125;&apos;)</div><div class="line">endfunc</div><div class="line"></div><div class="line">map&lt;f4&gt; :call AddComment()&lt;cr&gt;</div><div class="line">func AddComment()</div><div class="line">    if matchstr(getline(&apos;.&apos;), &apos;[^ ]&apos;) == &apos;/&apos;</div><div class="line">        normal ^xx</div><div class="line">    else</div><div class="line">        normal ^i//</div><div class="line">    endif</div><div class="line">endfunc</div><div class="line"></div><div class="line">map &lt;f5&gt; :call SetTitle2()&lt;CR&gt;Gkkk</div><div class="line">func SetTitle2()</div><div class="line">let l = 0</div><div class="line">let l = l + 1 | call setline(l, &apos;#include&lt;bits/stdc++.h&gt;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;using namespace std;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;int main()&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&#123;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    freopen(&quot;my.in&quot;,&quot;r&quot;,stdin);&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    //freopen(&quot;my.out&quot;,&quot;w&quot;,stdout);&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;    return 0;&apos;)</div><div class="line">let l = l + 1 | call setline(l, &apos;&#125;&apos;)</div><div class="line">endfunc</div><div class="line"></div><div class="line"></div><div class="line">set printoptions=syntax:n,number:y,portrait:y</div><div class="line"></div><div class="line">cd E:\Coder\my vim\</div><div class="line"></div><div class="line">set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1</div><div class="line">au GUIEnter * simalt ~x                           &quot;窗口启动时自动最大化</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;目前用的PC大限将至，即将随本科岁月一起成为过往。&lt;/p&gt;
-&lt;p&gt;在寿终正寝之前，整理一份陪伴五年时光的程序清单。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="生活" scheme="https://flintx.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="工具" scheme="https://flintx.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="软件" scheme="https://flintx.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
-    
-  </entry>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flint Zhao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
   
-  <entry>
-    <title>Hello, My Blog</title>
-    <link href="https://flintx.github.io/2017/02/02/hello/"/>
-    <id>https://flintx.github.io/2017/02/02/hello/</id>
-    <published>2017-02-02T04:23:44.000Z</published>
-    <updated>2017-02-08T12:50:48.574Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="图片插入测试"><a href="#图片插入测试" class="headerlink" title="图片插入测试"></a>图片插入测试</h2><p><img src="http://okqi2ipwh.bkt.clouddn.com/39163751_p0.jpg" alt="a image"></p>
-<a id="more"></a>
-<h2 id="代码高亮测试"><a href="#代码高亮测试" class="headerlink" title="代码高亮测试"></a>代码高亮测试</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">print(<span class="string">"hello, my blog"</span>)</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> java.math.BigInteger;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner cin = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		<span class="keyword">int</span> t = cin.nextInt();</div><div class="line">		<span class="keyword">int</span> i = <span class="number">1</span> ;</div><div class="line">		<span class="keyword">while</span>( i &lt;= t )&#123;</div><div class="line">			BigInteger a = cin.nextBigInteger();</div><div class="line">			BigInteger b = cin.nextBigInteger();</div><div class="line">			BigInteger c = a.mod(b) ;</div><div class="line">			<span class="keyword">if</span>( c == BigInteger.ZERO )</div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": divisible"</span>);</div><div class="line">			<span class="keyword">else</span></div><div class="line">				System.out.println(<span class="string">"Case "</span>+i+<span class="string">": not divisible"</span>);</div><div class="line">		&#125;</div><div class="line">		cin.close();</div><div class="line">		</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="数学公式测试"><a href="#数学公式测试" class="headerlink" title="数学公式测试"></a>数学公式测试</h2><script type="math/tex; mode=display">
-\begin{array}{c|lcr}
-n & \text{Left} & \text{Center} & \text{Right} \\
-\hline
-1 & 0.24 & 1 & 125 \\
-2 & -1 & 189 & -8 \\
-3 & -20 & 2000 & 1+10i \\
-\end{array}</script><p>$ x^2 + y^2 = z_1 + z_{a2} $</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;图片插入测试&quot;&gt;&lt;a href=&quot;#图片插入测试&quot; class=&quot;headerlink&quot; title=&quot;图片插入测试&quot;&gt;&lt;/a&gt;图片插入测试&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://okqi2ipwh.bkt.clouddn.com/39163751_p0.jpg&quot; alt=&quot;a image&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="博客相关" scheme="https://flintx.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-  <entry>
-    <title>建站日志</title>
-    <link href="https://flintx.github.io/2017/02/02/Blog-Logs/"/>
-    <id>https://flintx.github.io/2017/02/02/Blog-Logs/</id>
-    <published>2017-02-01T16:41:29.000Z</published>
-    <updated>2017-02-08T12:52:47.895Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="2017-02-08"><a href="#2017-02-08" class="headerlink" title="2017 - 02 - 08"></a>2017 - 02 - 08</h2><ul>
-<li>增加文章加密功能（解密后会出现数学公式渲染与字体api引起的代码高亮错误，仅适用于加密简单文本）</li>
-</ul>
-<h2 id="2017-02-07"><a href="#2017-02-07" class="headerlink" title="2017 - 02 - 07"></a>2017 - 02 - 07</h2><ul>
-<li>添加友链</li>
-<li>添加<code>README.md</code>文件</li>
-<li>添加<code>RSS</code>连接</li>
-</ul>
-<h2 id="2017-02-06"><a href="#2017-02-06" class="headerlink" title="2017 - 02 - 06"></a>2017 - 02 - 06</h2><ul>
-<li>增加多说评论功能、<code>UA</code>显示功能</li>
-<li>增加阅读次数统计功能（利用<code>LeanCloud</code>）</li>
-<li>添加<code>关于</code>、<code>分类</code>、<code>标签</code>页面</li>
-</ul>
-<h2 id="2017-02-04"><a href="#2017-02-04" class="headerlink" title="2017 - 02 - 04"></a>2017 - 02 - 04</h2><ul>
-<li>blog主题由<code>NexT</code>修改为<code>yilia</code></li>
-<li>绑定域名<a href="http://www.flintx.me" target="_blank" rel="external">flintx.me</a></li>
-<li>blog主题由<code>yilia</code>修改为<code>NexT</code></li>
-<li>外观Scheme由<code>Pisces</code>修改为<code>Mist</code></li>
-<li>开启代码高亮功能</li>
-<li>开启<code>MathJax</code>数学公式支持</li>
-<li>更换部分字体，并将fonts api的host由google切换至中科大镜像</li>
-<li>使用七牛云作为图床</li>
-</ul>
-<h2 id="2017-02-03"><a href="#2017-02-03" class="headerlink" title="2017 - 02 - 03"></a>2017 - 02 - 03</h2><ul>
-<li>修改语言为中文</li>
-</ul>
-<h2 id="2017-02-02"><a href="#2017-02-02" class="headerlink" title="2017 - 02 - 02"></a>2017 - 02 - 02</h2><ul>
-<li>建立项目<a href="https://github.com/flintx/flintx.github.io" target="_blank" rel="external">flintx.github.io</a></li>
-<li>blog框架由<code>Jekyll</code>切换为<code>Hexo</code></li>
-<li>使用<code>NexT</code>作为blog主题，并采用<code>Pisces</code>作为外观Scheme</li>
-<li>添加侧边栏社交link</li>
-<li>添加作者头像、描述</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;2017-02-08&quot;&gt;&lt;a href=&quot;#2017-02-08&quot; class=&quot;headerlink&quot; title=&quot;2017 - 02 - 08&quot;&gt;&lt;/a&gt;2017 - 02 - 08&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;增加文章加密功能（解密后会出现数学公式渲染与字体
-    
-    </summary>
-    
-    
-      <category term="博客相关" scheme="https://flintx.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/"/>
-    
-  </entry>
+
+
+
+
   
-</feed>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"flintx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("13IHpQ3QxSfjCu3odKHAmlPs-gzGzoHsz", "EX6a7l9qFahghSKFSj2K7S7d");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+  
+
+
+</body>
+</html>
