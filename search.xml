@@ -196,7 +196,7 @@
 <p>更多特性与使用技巧参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="external">MDN - Arrow Function</a></p>
 <h3 id="yield-关键字-与-generator-对象"><a href="#yield-关键字-与-generator-对象" class="headerlink" title="yield 关键字 与 generator 对象"></a>yield 关键字 与 generator 对象</h3><p>这个概念之前学Python时接触过。。懒得填这个坑了，将来接触 <code>function*</code> 和 <code>AJAX</code> 再单独写文章说明吧。。</p>
 <p>简单说调用 <code>generator</code> 的优势在于不立即执行并保存上次执行状态。</p>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+]]></content>
     </entry>
     
     <entry>
