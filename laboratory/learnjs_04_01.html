@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>白学现场</title>
+</head>
+<body>
+<img id="wa2" src="http://flintx.me/images/Kazusa.jpg" height="600" width="270">
+<button id="btn">冬马小三！</button>
+<h3 id="white_theory" align="center"></h3>
+<script>
+    var SetsunaURL = 'http://flintx.me/images/Setsuna.jpg';
+    var KazusaURL = 'http://flintx.me/images/Kazusa.jpg';
+    var WA2URL = 'http://flintx.me/images/WA2.jpg';
+    var btn = document.getElementById('btn');
+    var wa2Image = document.getElementById('wa2');
+    var wa2Text = document.getElementById('white_theory');
+    var times = 0;
+    btn.addEventListener('click', function () {
+        times++;
+        if (times > 5) {
+            btn.style.display = 'none';
+            wa2Image.src = WA2URL;
+            wa2Image.height = '720';
+            wa2Image.width = '1366';
+            wa2Text.innerHTML = '为什么会这样呢？明明是我先来的';
+        } else if (times % 2 === 1) {
+            btn.innerHTML = '雪菜碧池！';
+            wa2Image.src = SetsunaURL;
+        } else if (times % 2 === 0) {
+            btn.innerHTML = '冬马小三！';
+            wa2Image.src = KazusaURL;
+        }
+    })
+</script>
+</body>
+</html>
