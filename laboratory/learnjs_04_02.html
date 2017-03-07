@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change! Change! Change!</title>
+</head>
+<body>
+<p id="pid">
+    Hello World!
+</p>
+
+<button id="btn1">变大</button>
+<button id="btn2">变小</button>
+<button id="btn3">变色</button>
+<button id="btn4">消失</button>
+<button id="btn5">出现</button>
+
+<script>
+    var p = document.getElementById('pid');
+    var btn1 = document.getElementById('btn1');
+    var btn2 = document.getElementById('btn2');
+    var btn3 = document.getElementById('btn3');
+    var btn4 = document.getElementById('btn4');
+    var btn5 = document.getElementById('btn5');
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    btn1.addEventListener('click', function () {
+        var fontSize = p.style.fontSize || '20px';
+        fontSize = parseInt(fontSize) + 2;
+        p.style.fontSize = fontSize.toString() + 'px';
+    });
+    btn2.addEventListener('click', function () {
+        var fontSize = p.style.fontSize || '20px';
+        fontSize = parseInt(fontSize) - 2;
+        p.style.fontSize = fontSize.toString() + 'px';
+    });
+    btn3.addEventListener('click', function () {
+        var colors = ['red', 'blue', 'green', 'pink', 'gray', 'orange', 'yellow'];
+        p.style.color = colors[getRandomInt(0, colors.length - 1)];
+    });
+    btn4.addEventListener('click', function () {
+        p.style.visibility = 'hidden';
+    });
+    btn5.addEventListener('click', function () {
+        p.style.visibility = 'visible';
+    })
+</script>
+</body>
+</html>
