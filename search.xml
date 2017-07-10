@@ -250,7 +250,8 @@
     <entry>
       <title><![CDATA[写在四月将至]]></title>
       <url>https://flintx.github.io/2017/03/28/April/</url>
-      <content type="html"><![CDATA[<h2 id="四月待办事项"><a href="#四月待办事项" class="headerlink" title="四月待办事项"></a>四月待办事项</h2><h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><ul>
+      <content type="html"><![CDATA[<h2 id="四月待办事项"><a href="#四月待办事项" class="headerlink" title="四月待办事项"></a>四月待办事项</h2><a id="more"></a>
+<h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><ul>
 <li><a href="https://github.com/VREMSoftwareDevelopment/WiFiAnalyzer" target="_blank" rel="external">WifiAnalyzer</a> 源码阅读</li>
 <li>把手上的三星 Note3 升级到 Android 6.0+ ，或者使手上的华为 Mate 9 获取到 Root 权限</li>
 <li><a href="https://github.com/gpfduoduo/NetWorkTools" target="_blank" rel="external">Tcpdump</a> 调研</li>

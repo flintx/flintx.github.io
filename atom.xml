@@ -293,9 +293,10 @@
     <link href="https://flintx.github.io/2017/03/28/April/"/>
     <id>https://flintx.github.io/2017/03/28/April/</id>
     <published>2017-03-28T08:26:12.000Z</published>
-    <updated>2017-03-28T09:02:23.116Z</updated>
+    <updated>2017-07-10T16:43:37.907Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="四月待办事项"><a href="#四月待办事项" class="headerlink" title="四月待办事项"></a>四月待办事项</h2><h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><ul>
+    <content type="html"><![CDATA[<h2 id="四月待办事项"><a href="#四月待办事项" class="headerlink" title="四月待办事项"></a>四月待办事项</h2><a id="more"></a>
+<h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><ul>
 <li><a href="https://github.com/VREMSoftwareDevelopment/WiFiAnalyzer" target="_blank" rel="external">WifiAnalyzer</a> 源码阅读</li>
 <li>把手上的三星 Note3 升级到 Android 6.0+ ，或者使手上的华为 Mate 9 获取到 Root 权限</li>
 <li><a href="https://github.com/gpfduoduo/NetWorkTools" target="_blank" rel="external">Tcpdump</a> 调研</li>
@@ -328,9 +329,11 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;四月待办事项&quot;&gt;&lt;a href=&quot;#四月待办事项&quot; class=&quot;headerlink&quot; title=&quot;四月待办事项&quot;&gt;&lt;/a&gt;四月待办事项&lt;/h2&gt;&lt;h3 id=&quot;毕业设计&quot;&gt;&lt;a href=&quot;#毕业设计&quot; class=&quot;headerlink&quot; title=&quot;毕
+      &lt;h2 id=&quot;四月待办事项&quot;&gt;&lt;a href=&quot;#四月待办事项&quot; class=&quot;headerlink&quot; title=&quot;四月待办事项&quot;&gt;&lt;/a&gt;四月待办事项&lt;/h2&gt;
     
     </summary>
+    
+      <category term="想到哪写到哪" scheme="https://flintx.github.io/categories/%E6%83%B3%E5%88%B0%E5%93%AA%E5%86%99%E5%88%B0%E5%93%AA/"/>
     
     
       <category term="生活" scheme="https://flintx.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
