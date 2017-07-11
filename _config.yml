@@ -117,5 +117,5 @@ jiathis: false
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:flintx/flintx.github.io.git
+  repo: https://github.com/flintx/flintx.github.io.git
   branch: master
