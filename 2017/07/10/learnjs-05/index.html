@@ -138,7 +138,7 @@ W3School JavaScript 教程
 <meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B92.png">
 <meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/%E9%81%8D%E5%8E%86%E8%8A%82%E7%82%B9.png">
 <meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C.png">
-<meta property="og:updated_time" content="2017-07-10T16:30:14.172Z">
+<meta property="og:updated_time" content="2017-07-11T11:05:58.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript学习笔记05（jQuery选择器与DOM操作）">
 <meta name="twitter:description" content="参考 &amp;amp; 学习：
@@ -521,9 +521,12 @@ W3School JavaScript 教程
 <p>​</p>
 </li>
 </ol>
-<h2 id="jQuery-语法"><a href="#jQuery-语法" class="headerlink" title="jQuery 语法"></a>jQuery 语法</h2><h3 id="符号"><a href="#符号" class="headerlink" title="$ 符号"></a>$ 符号</h3><p>jQuery 把所有功能封装在一个全局变量 <code>jQuery</code> 中，而 <script type="math/tex">` 是 `jQuery` 的别名。在实际开发中，往往直接使用 `</script> 符号。如果引入多个 js 框架造成了 <script type="math/tex">` 符号的相互占用，也可以使用 `noConflict()` 方法来解除对 `</script> 的占用，交还 <code>$</code> 符号的占用权。</p>
+<h2 id="jQuery-语法"><a href="#jQuery-语法" class="headerlink" title="jQuery 语法"></a>jQuery 语法</h2><h3 id="符号"><a href="#符号" class="headerlink" title="$ 符号"></a>$ 符号</h3><p>jQuery 把所有功能封装在一个全局变量 <code>jQuery</code> 中，而 <code>$</code> 是 <code>jQuery</code> 的别名。</p>
+<p>在实际开发中，往往直接使用 <code>$</code> 符号。</p>
+<p>如果引入多个 js 框架造成了该符号被相互占用，也可以使用 <code>noConflict()</code> 方法来解除对 <code>$</code> 的占用，交还该符号的占用权。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ === jQuery; <span class="comment">// true</span></div><div class="line"><span class="keyword">typeof</span>($); <span class="comment">// "function"</span></div><div class="line">$; <span class="comment">// function (e,t)&#123;return new st.fn.init(e,t,X)&#125;</span></div><div class="line"><span class="keyword">var</span> tmp = $.noConflict(); <span class="comment">// 创建一个新的别名tmp, 用以在接下来的库中使用 jQuery 对象</span></div><div class="line">$; <span class="comment">// undefined</span></div><div class="line">tmp; <span class="comment">// function (e,t)&#123;return new st.fn.init(e,t,X)&#125;</span></div></pre></td></tr></table></figure>
-<p><script type="math/tex">` 实际上是一个函数，但 js 中函数也是一个对象，故 `</script> 拥有众多属性与方法。</p>
+<p><code>$</code> 本质上是一个函数。</p>
+<p>但 js 中函数也是一个对象，故 <code>$</code> 拥有众多属性与方法。</p>
 <p>它的基本语法如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(selector).action();</div><div class="line"><span class="comment">// $ -- 即全局变量jQuery</span></div><div class="line"><span class="comment">// selector -- 选择器，用于查询 HTML element</span></div><div class="line"><span class="comment">// action -- 对 element 所执行的操作</span></div><div class="line"></div><div class="line"><span class="comment">/* for example */</span></div><div class="line">$(<span class="string">"p"</span>).hide() <span class="comment">// 隐藏所有 &lt;p&gt; 元素</span></div><div class="line">$(<span class="string">"p.test"</span>).text(<span class="string">"Hello World"</span>) <span class="comment">// 将所有 class="test" 的 &lt;p&gt; 元素的文本设置为 "Hello World"</span></div><div class="line">$(<span class="string">"a#test"</span>).attr(<span class="string">"href"</span>, <span class="string">"http://flintx.me"</span>) <span class="comment">// 将所有 id="test" 的 &lt;a&gt; 元素的链接地址设置为本博客</span></div></pre></td></tr></table></figure>
 <h3 id="文档就绪事件"><a href="#文档就绪事件" class="headerlink" title="文档就绪事件"></a>文档就绪事件</h3><p>为了防止网页在文档加载完成之前就运行 jQuery 代码（可能会导致操作一个不存在的元素、获得未完全渲染的元素等），在运行 jQuery 之前我们往往需要加上判断。</p>
