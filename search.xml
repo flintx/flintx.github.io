@@ -1126,7 +1126,10 @@ n & \text{Left} & \text{Center} & \text{Right} \\
     <entry>
       <title><![CDATA[建站日志]]></title>
       <url>https://flintx.github.io/2017/02/02/Blog-Logs/</url>
-      <content type="html"><![CDATA[<h2 id="2017-02-08"><a href="#2017-02-08" class="headerlink" title="2017 - 02 - 08"></a>2017 - 02 - 08</h2><ul>
+      <content type="html"><![CDATA[<h2 id="2017-07-11"><a href="#2017-07-11" class="headerlink" title="2017 - 07 - 11"></a>2017 - 07 - 11</h2><ul>
+<li>增加hexo分支，便于文章源文件、配置文件同步，参考：<a href="http://www.jianshu.com/p/beb8d611340a" target="_blank" rel="external">Hexo博客从一台电脑迁移到其他电脑</a></li>
+</ul>
+<h2 id="2017-02-08"><a href="#2017-02-08" class="headerlink" title="2017 - 02 - 08"></a>2017 - 02 - 08</h2><ul>
 <li>增加文章加密功能（解密后会出现数学公式渲染与字体api引起的代码高亮错误，仅适用于加密简单文本）</li>
 </ul>
 <h2 id="2017-02-07"><a href="#2017-02-07" class="headerlink" title="2017 - 02 - 07"></a>2017 - 02 - 07</h2><ul>
