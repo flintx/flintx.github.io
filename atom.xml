@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://flintx.github.io/"/>
-  <updated>2017-07-11T11:05:58.775Z</updated>
+  <updated>2017-07-29T13:50:25.086Z</updated>
   <id>https://flintx.github.io/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>争分夺秒学技术</title>
+    <link href="https://flintx.github.io/2017/07/29/save-time-to-learn/"/>
+    <id>https://flintx.github.io/2017/07/29/save-time-to-learn/</id>
+    <published>2017-07-29T13:54:13.000Z</published>
+    <updated>2017-07-29T13:50:25.086Z</updated>
+    
+    <content type="html"><![CDATA[<p>7月份，每天40度的高温下，我历经了毕业以来的最身心俱疲的辛苦：令人惶惶的项目需求，无一秒闲暇的加班加点，知识匮乏与能力不足带来的不甘。</p>
+<p>有感于未来生活也不会那么容易，我必须快速地成长起来，去汲取各种知识。同时经营好身体，目前还是太瘦了。</p>
+<p>研究生的计划目前只有这么一个：争分夺秒学习技术，早睡早起好好吃饭。</p>
+<a id="more"></a>
+<p>目前有要学习的一些东西。</p>
+<h3 id="8月份要完成的文章"><a href="#8月份要完成的文章" class="headerlink" title="8月份要完成的文章"></a>8月份要完成的文章</h3><hr>
+<ul>
+<li>[ ] JSON 与 Ajax</li>
+<li>[ ] 浏览器兼容性问题小结</li>
+<li>[ ] Python中selenium、configparser</li>
+<li>[ ] js中的underscore</li>
+<li>[ ] bootstrap初步使用</li>
+</ul>
+<h3 id="8、9月要看的一些书"><a href="#8、9月要看的一些书" class="headerlink" title="8、9月要看的一些书"></a>8、9月要看的一些书</h3><hr>
+<ul>
+<li><p>《第一行代码》第2版</p>
+<p>重点是第6章之后的内容</p>
+</li>
+<li><p>《用Python写网络爬虫》</p>
+</li>
+<li><p>《锋利的jQuery》第2版</p>
+</li>
+</ul>
+<h3 id="一些资料"><a href="#一些资料" class="headerlink" title="一些资料"></a>一些资料</h3><hr>
+<ul>
+<li><p><a href="http://www.code123.cc/1791.html" target="_blank" rel="external">Web前端开发资源整合</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/21935921" target="_blank" rel="external">前端学习路径</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/25604225" target="_blank" rel="external">必备神器：前端开发全面知识库</a></p>
+<p>​</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;7月份，每天40度的高温下，我历经了毕业以来的最身心俱疲的辛苦：令人惶惶的项目需求，无一秒闲暇的加班加点，知识匮乏与能力不足带来的不甘。&lt;/p&gt;
+&lt;p&gt;有感于未来生活也不会那么容易，我必须快速地成长起来，去汲取各种知识。同时经营好身体，目前还是太瘦了。&lt;/p&gt;
+&lt;p&gt;研究生的计划目前只有这么一个：争分夺秒学习技术，早睡早起好好吃饭。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="https://flintx.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="编程" scheme="https://flintx.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript学习笔记05（jQuery选择器与DOM操作）</title>
