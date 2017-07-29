@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://flintx.github.io/"/>
-  <updated>2017-07-29T13:50:25.086Z</updated>
+  <updated>2017-07-29T13:55:20.461Z</updated>
   <id>https://flintx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://flintx.github.io/2017/07/29/save-time-to-learn/"/>
     <id>https://flintx.github.io/2017/07/29/save-time-to-learn/</id>
     <published>2017-07-29T13:54:13.000Z</published>
-    <updated>2017-07-29T13:50:25.086Z</updated>
+    <updated>2017-07-29T13:55:20.461Z</updated>
     
     <content type="html"><![CDATA[<p>7月份，每天40度的高温下，我历经了毕业以来的最身心俱疲的辛苦：令人惶惶的项目需求，无一秒闲暇的加班加点，知识匮乏与能力不足带来的不甘。</p>
 <p>有感于未来生活也不会那么容易，我必须快速地成长起来，去汲取各种知识。同时经营好身体，目前还是太瘦了。</p>
@@ -65,8 +65,12 @@
     
     </summary>
     
+      <category term="想到哪写到哪" scheme="https://flintx.github.io/categories/%E6%83%B3%E5%88%B0%E5%93%AA%E5%86%99%E5%88%B0%E5%93%AA/"/>
+    
     
       <category term="生活" scheme="https://flintx.github.io/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="随笔" scheme="https://flintx.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
       <category term="编程" scheme="https://flintx.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
     
