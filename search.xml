@@ -4,6 +4,188 @@
   
     
     <entry>
+      <title><![CDATA[自动化测试工具 Selenium Python 使用浅析]]></title>
+      <url>https://flintx.github.io/2017/08/29/selenium-python-spider/</url>
+      <content type="html"><![CDATA[<p>前不久做的项目里有个很坑的事，项目要求通过远程摄像头来实时获取景区的客流量信息，一开始是用海康威视提供的SDK在做，孰料用SDK提供的远程登陆接口始终登陆不上去，错误代码为访问超时。不仅如此，尝试了所有海康提供的所有demo与官方工具iVMS-4200，又关闭了防火墙，这个问题依然无解。</p>
+<p>但奇怪的是，浏览器可以访问摄像头远程管理页面，通过tcping工具也能ping通。万般无奈之下，只好用爬虫访问远程管理页来抓取实时客流信息。</p>
+<p>在写爬虫的过程中接触了三个比较有趣的东西：用于自动化测试的selenium、用于读取配置文件的configParser、和Windows定时任务。这两天相对有时间，准备把学习过程中的一些东西记录下来。</p>
+<p>这篇文章主要讲selenium。</p>
+<a id="more"></a>
+<p>Selenium是一个用来做自动化测试的工具，支持包括 Chrome，Safari，Firefox 等主流浏览器，并且能用包括Java、C#、Python、Ruby、PHP、Perl、JavaScript等多种语言进行开发。这里我们选取Python与Chrome来进行下一步的学习。</p>
+<p>Selenium能够模拟人工的多种操作，例如点击事件、回车键触发、文本输入、表单填充、复选框切换等。利用Selenium可以将较为复杂琐碎的手动操作实现自动化。</p>
+<p>Selenium官网的使用手册：<a href="http://selenium-python.readthedocs.io/" target="_blank" rel="external">Selenium with Python</a> </p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol>
+<li><p>安装selenium，可以通过pip或下载<a href="https://pypi.python.org/pypi/selenium" target="_blank" rel="external">源码</a>来安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># pip 方法</div><div class="line">pip install selenium</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 源码安装</div><div class="line">python setup.py install</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>下载浏览器驱动。selenium需要安装相应的driver来驱动真实浏览器，常见浏览器的driver下载地址如下，Chrome driver版本与内核版本对应关系参考<a href="http://blog.csdn.net/cz9025/article/details/70160273" target="_blank" rel="external">这里</a>，下载后将其解压到PATH变量中的路径即可。（Linux放置在 <code>/usr/bin</code> 或 <code>/usr/local/bin/</code> 下）</p>
+</li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>Chrome</strong>:</th>
+<th><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="external">google官方的</a>，<a href="http://npm.taobao.org/mirrors/chromedriver" target="_blank" rel="external">淘宝npm的</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Edge</strong>:</td>
+<td><a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/" target="_blank" rel="external">https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/</a></td>
+</tr>
+<tr>
+<td><strong>Firefox</strong>:</td>
+<td><a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="external">https://github.com/mozilla/geckodriver/releases</a></td>
+</tr>
+<tr>
+<td><strong>Safari</strong>:</td>
+<td><a href="https://webkit.org/blog/6900/webdriver-support-in-safari-10/" target="_blank" rel="external">https://webkit.org/blog/6900/webdriver-support-in-safari-10/</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li><p>使用测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="comment"># browser = webdriver.Chrome(chrome_driver_path) 通过参数来指定driver地址也可以</span></div><div class="line">browser = webdriver.Chrome() </div><div class="line">browser.get(<span class="string">"http://www.baidu.com/"</span>)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用浅析"><a href="#使用浅析" class="headerlink" title="使用浅析"></a>使用浅析</h2><h3 id="find-查找页面元素"><a href="#find-查找页面元素" class="headerlink" title="find-查找页面元素"></a>find-查找页面元素</h3><p>selenium提供了多种多样的查询元素的方式，而这些方式均有 <code>find_element_by_xxx()</code> 与 <code>find_elements_by_xxx()</code> 两个版本 ：</p>
+<ul>
+<li><code>find_element_by_id()</code> /  <code>find_elements_by_id()</code> : 根据元素id来查找指定元素  </li>
+<li><code>find_element_by_name()</code> /  <code>find_elements_by_name()</code> : 根据元素name来查找指定元素  </li>
+<li><code>find_element_by_class_name()</code> /  <code>find_elements_by_class_name()</code> : 根据元素类名来查找指定元素  </li>
+<li><code>find_element_by_tag_name()</code> /  <code>find_elements_by_tag_name()</code> : 根据标签名来查找指定元素  </li>
+<li><code>find_element_by_link_text()</code> /  <code>find_elements_by_link_text()</code> : 根据链接文本来查找指定元素  </li>
+<li><code>find_element_by_partial_link_text()</code> /  <code>find_elements_by_partial_link_text()</code> : 根据部分链接文本来查找指定元素  </li>
+<li><code>find_element_by_xpath()</code> /  <code>find_elements_by_xpath()</code> : 根据xpath来查找指定元素，关于xpath的资料可参考：<a href="http://www.w3school.com.cn/xpath/xpath_syntax.asp" target="_blank" rel="external">XPath 语法</a></li>
+<li><code>find_element_by_css_selector()</code> / <code>find_elements_by_css_selector()</code> : 查找CSS 选择器来查找元素</li>
+</ul>
+<p>一个元素的xpath或css selector，可以使用开发者工具来获取：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84xpath%E4%B8%8Eselector.png" alt=""></p>
+<p>使用参考：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_selenium</span><span class="params">()</span>:</span></div><div class="line">    browser = webdriver.Chrome()</div><div class="line">    browser.get(<span class="string">"http://www.baidu.com"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># by id, 等价于 elem_qrcode_img = browser.find_element(By.CLASS_NAME, "qrcode-img")</span></div><div class="line">    elem_img_qrcode = browser.find_element_by_class_name(<span class="string">"qrcode-img"</span>)</div><div class="line">    print(elem_img_qrcode.size)</div><div class="line"></div><div class="line">    <span class="comment"># by name, 等价于 elem_news_a = browser.find_element(By.NAME, "tj_trnews")</span></div><div class="line">    elem_a_news = browser.find_element_by_name(<span class="string">"tj_trnews"</span>)</div><div class="line">    print(elem_a_news.text)</div><div class="line"></div><div class="line">    <span class="comment"># by class name, 等价于 elem_qrcode_img = browser.find_element(By.ID, "su")</span></div><div class="line">    elem_baidu_button = browser.find_element_by_id(<span class="string">"su"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># by tag name, 等价于 elem_p = browser.find_elements(By.TAG_NAME, "p")</span></div><div class="line">    elem_p_list = browser.find_elements_by_tag_name(<span class="string">"p"</span>)</div><div class="line">    elem_p_text_list = list(map(<span class="keyword">lambda</span> x: x.text, elem_p_list))</div><div class="line">    print(elem_p_text_list)</div><div class="line"></div><div class="line">    <span class="comment"># 通过链接文本内容, 等价于 elem_tieba_a = browser.find_element(By.LINK_TEXT, "贴吧")</span></div><div class="line">    elem_a_tieba = browser.find_element_by_link_text(<span class="string">"贴吧"</span>)</div><div class="line">    print(elem_a_tieba.get_property(<span class="string">"href"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># 通过部分链接文本内容, 等价于 elem_hao123_a = browser.find_element(By.PARTIAL_LINK_TEXT, "hao")</span></div><div class="line">    elem_a_hao123 = browser.find_element_by_partial_link_text(<span class="string">"hao"</span>)</div><div class="line">    print(elem_a_hao123.text + <span class="string">": "</span> + elem_a_hao123.get_property(<span class="string">"href"</span>))</div><div class="line"></div><div class="line">    <span class="comment"># by XPath or CSS Selector</span></div><div class="line">    elem_input_kw = browser.find_element_by_xpath(<span class="string">"//*[@id='kw']"</span>)</div><div class="line">    elem_input_kw = browser.find_element_by_css_selector(<span class="string">"#kw"</span>)</div><div class="line">    elem_input_kw.send_keys(<span class="string">"bilibili"</span>)</div><div class="line">    elem_baidu_button.click()</div><div class="line"></div><div class="line">    browser.close() <span class="comment"># 关闭tab</span></div><div class="line">    browser.quit() <span class="comment"># 退出浏览器</span></div><div class="line">    </div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    test_selenium()</div></pre></td></tr></table></figure>
+<h3 id="get-获取页面信息"><a href="#get-获取页面信息" class="headerlink" title="get-获取页面信息"></a>get-获取页面信息</h3><p>页面信息可以通过浏览器 driver 对象与元素 element 对象来获取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">driver = webdriver.Chrome()</div><div class="line">element = driver.find_element(By.xxx, <span class="string">"xxx"</span>)</div></pre></td></tr></table></figure>
+<h4 id="WebElement"><a href="#WebElement" class="headerlink" title="WebElement"></a>WebElement</h4><ul>
+<li><p><code>WebElement.id</code> : 获取当前元素的ID </p>
+</li>
+<li><p><code>WebElement.text</code> : 获取当前元素的内容</p>
+</li>
+<li><p><code>WebElement.tag_name</code> : 获取当前元素标签名 </p>
+</li>
+<li><p><code>WebElement.get_attribute(name)</code> : 获得当前元素特性值 </p>
+</li>
+<li><p><code>WebElement.get_property(name)</code> : 获得当前元素属性值，关于 attribute 与 property 的区别可参考：<a href="http://joji.me/zh-cn/blog/html-attribute-vs-dom-property" target="_blank" rel="external">详解JavaScript中attribute和property的区别以及最佳实践</a> ，在js中推荐使用 property 方法，但由于 selenium 库中 <code>get_attribute()</code> 方法中首先是执行 <code>get_property()</code> 方法，若 property 不存在则寻找 attribute ， <code>get_attribute()</code> 方法源码注释为：</p>
+<blockquote>
+<p>This method will first try to return the value of a property with the<br>given name. If a property with that name doesn’t exist, it returns the<br>value of the attribute with the same name. If there’s no attribute with<br>that name, <code>None</code> is returned.</p>
+<p>Values which are considered truthy, that is equals “true” or “false”,<br>are returned as booleans.  All other non-<code>None</code> values are returned<br>as strings.  For attributes or properties which do not exist, <code>None</code><br>is returned.</p>
+</blockquote>
+<p>所以这里推荐使用 <code>get_attribute()</code> 方法。</p>
+</li>
+<li><p><code>WebElement.is_displayed()</code> : 判断当前元素是否可见 </p>
+</li>
+<li><p><code>WebElement.is_enabled()</code> : 判断当前元素是否被启用 </p>
+</li>
+<li><p><code>WebElement.is_selected()</code> : 判断当前元素是否被选中 </p>
+</li>
+<li><p><code>WebElement.size</code> : 获取当前元素尺寸 </p>
+</li>
+<li><p><code>WebElement.location</code> : 获取当前元素坐标，可以通过 <code>WebElement.rect</code> 来同时获取 <code>size</code> 与 <code>location</code> </p>
+</li>
+</ul>
+<h4 id="WebDriver"><a href="#WebDriver" class="headerlink" title="WebDriver"></a>WebDriver</h4><ul>
+<li><code>WebDriver.current_url</code> : 获取当前链接 </li>
+<li><code>WebDriver.title</code> : 获取当前标题 </li>
+<li><code>WebDriver.page_source</code> : 获取页面源码</li>
+</ul>
+<h3 id="operation-页面操作"><a href="#operation-页面操作" class="headerlink" title="operation-页面操作"></a>operation-页面操作</h3><h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li><code>.clear()</code> : 清除可编辑元素的内容 </li>
+<li><code>.send_keys(txt)</code> : 在可编辑元素元素上模拟按键输入 </li>
+<li><code>.submit()</code> : 提交表单,要求提交对象是一个表单</li>
+</ul>
+<p>以上三个操作只能用于可编辑的元素或表单。</p>
+<ul>
+<li><code>.click()</code> : 单击元素，可用于任何可以点击的元素 </li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">driver = webdriver.Chrome()</div><div class="line">driver.get(<span class="string">"http://www.baidu.com"</span>)</div><div class="line">elem_input_kw = driver.find_element_by_id(<span class="string">"kw"</span>)</div><div class="line">elem_input_kw.send_keys(<span class="string">"bilibili"</span>)</div><div class="line"><span class="comment"># 三种方法是同一效果</span></div><div class="line"><span class="comment"># 1.</span></div><div class="line"><span class="comment"># elem_input_kw.send_keys(Keys.RETURN)</span></div><div class="line"><span class="comment"># 2.</span></div><div class="line"><span class="comment"># elem_input_kw.submit()</span></div><div class="line"><span class="comment"># 3.</span></div><div class="line">driver.find_element_by_id(<span class="string">"su"</span>).click()</div><div class="line"></div><div class="line">time.sleep(<span class="number">3</span>)</div><div class="line">driver.save_screenshot(<span class="string">"E:\\screen1.png"</span>)</div><div class="line">elem_input_kw = driver.find_element_by_id(<span class="string">"kw"</span>)</div><div class="line">elem_input_kw.clear()</div><div class="line">driver.save_screenshot(<span class="string">"E:\\screen2.png"</span>)</div></pre></td></tr></table></figure>
+<h4 id="等待操作"><a href="#等待操作" class="headerlink" title="等待操作"></a>等待操作</h4><p>由于目前大部分网页都不是纯静态的，都用到了大量Ajax这一类的异步动态加载技术，所以可能由于受限于网络速率、稳定性等问题，导致找不到需要的 WebElement（实际上是未加载完毕）。selenium为我们提供了两种等待页面加载的操作方法：显式（Explicit）等待与隐式（Implicit）等待。</p>
+<h5 id="显式等待"><a href="#显式等待" class="headerlink" title="显式等待"></a>显式等待</h5><p>所谓显式等待，就是指预先定义好等待条件，待条件满足后再开始执行。</p>
+<p>看一段代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</div><div class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</div><div class="line"></div><div class="line">driver = webdriver.Chrome()</div><div class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    element_existed = WebDriverWait(driver, <span class="number">10</span>).until(</div><div class="line">        EC.presence_of_element_located((By.ID, <span class="string">"myDynamicElement"</span>))</div><div class="line">    )</div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    driver.quit()</div></pre></td></tr></table></figure>
+<p>这段代码中，我们实例化了一个等待类 WebDriverWait，并传入了两个参数：当前浏览器 driver 与等待时间 10 （秒）。然后调用 until 方法，方法参数为等待条件，即id=”myDynamicElement”的元素是否存在。运行这个 <code>until</code> 方法，方法将会在满足等待条件后返回一个True，否则当等待时间到将抛出 <code>TimeoutException</code> 异常。</p>
+<p>同理，有 <code>until</code> 方法，也有 <code>until_not</code> 方法。这两个方法的参数包括：</p>
+<ul>
+<li><code>timeout</code> : 等待时间，单位为秒</li>
+<li><code>poll_frequency</code> : 调用判定等待条件方法的时间间隔，单位为秒，默认为0.5s</li>
+<li><code>ignored_exceptions</code> : 忽略的异常，如果在调用until或until_not的过程中抛出这个元组中的异常，则不中断代码，继续等待，如果抛出的是这个元组外的异常，则中断代码，抛出异常。默认只有NoSuchElementException。</li>
+</ul>
+<p>而 selenium 的 expected_conditions 模块为我们提供了一系列构造等待条件的方法，其中包括：</p>
+<ul>
+<li><code>title_is</code> : 验证 driver 的 title 是否与传入的 title 一致 </li>
+<li><code>title_contains</code> : 验证 driver 的 title 中是否包含传入的 title</li>
+<li><code>presence_of_element_located</code> : 验证页面中是否存在传入的元素，传入元素的格式是 locator 元组，如 <code>(By.ID, &quot;id1&quot;)</code></li>
+<li><code>visibility_of_element_located</code> : 验证页面中传入的元素（ <code>locator</code> 元组格式 ）是否可见，这里的可见不仅仅是 <code>display</code> 属性非 <code>None</code> ，还意味着宽高均大于0</li>
+<li><code>visibility_of</code> : 验证页面中传入的元素（ <code>WebElement</code> 格式 ）是否可见。</li>
+<li><code>presence_of_all_elements_located</code> : 验证页面中是否存在传入的所有元素，传入元素的格式是 locator 元组构成的 list，如 <code>[(By.ID, &quot;id1&quot;), (By.NAME, &quot;name1&quot;)</code></li>
+<li><code>text_to_be_present_in_element</code> : 验证在指定页面元素的text中是否包含传入的文本</li>
+<li><code>text_to_be_present_in_element_value</code> :  验证在指定页面元素的value中是否包含传入的文本</li>
+<li><code>frame_to_be_available_and_switch_to_it</code> : 验证frame是否可切入，传入 locator 元组 或 WebElement</li>
+<li><code>invisibility_of_element_located</code> : 验证页面中传入的元素（ <code>locator</code> 元组格式 ）是否可见</li>
+<li><code>element_to_be_clickable</code> : 验证页面中传入的元素（ <code>WebElement</code> 格式 ）是否可见。</li>
+<li><code>staleness_of</code> : 判断传入元素（<code>WebElement</code> 格式）是否仍在DOM中</li>
+<li><code>element_to_be_selected</code> : 判断传入元素（<code>WebElement</code> 格式）是否被选中</li>
+<li><code>element_located_to_be_selected</code> : 判断传入元素（<code>locator</code> 元组格式）是否被选中</li>
+<li><code>element_selection_state_to_be</code> : 验证传入的可选择元素（<code>WebElement</code> 格式）是否处于某传入状态</li>
+<li><code>element_located_selection_state_to_be</code> : 验证传入的可选择元素（<code>WebElement</code> 格式）是否处于某传入状态</li>
+<li><code>alert_is_present</code> : 验证是否有 <code>alert</code> 出现。</li>
+</ul>
+<p>更多API可参考<a href="http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.support.expected_conditions" target="_blank" rel="external">官方文档</a></p>
+<h5 id="隐式等待"><a href="#隐式等待" class="headerlink" title="隐式等待"></a>隐式等待</h5><p>所谓隐式等待，就是 <code>time.sleep(seconds)</code> 。不过selenium还是为其提供了标准方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line">driver = webdriver.Firefox()</div><div class="line">driver.implicitly_wait(<span class="number">10</span>) <span class="comment"># seconds</span></div><div class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</div><div class="line">myDynamicElement = driver.find_element_by_id(<span class="string">"myDynamicElement"</span>)</div></pre></td></tr></table></figure>
+<h4 id="鼠标操作"><a href="#鼠标操作" class="headerlink" title="鼠标操作"></a>鼠标操作</h4><p><a href="http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.common.action_chains" target="_blank" rel="external">ActionChains</a></p>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</div><div class="line"></div><div class="line">element = driver.find_element_by_name(<span class="string">"source"</span>)</div><div class="line">target = driver.find_element_by_name(<span class="string">"target"</span>)</div><div class="line">action_chains = ActionChains(driver)</div><div class="line">action_chains.drag_and_drop(element, target).perform()</div></pre></td></tr></table></figure>
+<h4 id="键盘-表单操作"><a href="#键盘-表单操作" class="headerlink" title="键盘/表单操作"></a>键盘/表单操作</h4><p><a href="http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.common.keys" target="_blank" rel="external">Keys</a></p>
+<p><a href="http://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.support.select" target="_blank" rel="external">Select</a></p>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> Select</div><div class="line">select = Select(driver.find_element_by_id(<span class="string">'my_id'</span>))</div><div class="line">select.select_by_index(index) <span class="comment"># 根据索引值</span></div><div class="line">select.select_by_visible_text(<span class="string">"text"</span>) <span class="comment"># 根据选项文本</span></div><div class="line">select.select_by_value(value) <span class="comment"># 根据选项值</span></div><div class="line"></div><div class="line">select.deselect_all() <span class="comment"># 全部取消选择/重置</span></div><div class="line"></div><div class="line">all_selected_options = select.all_selected_options <span class="comment"># 获取所有已选项</span></div><div class="line">options = select.options <span class="comment"># 获取所有可选项</span></div></pre></td></tr></table></figure>
+<h4 id="窗口-切换操作"><a href="#窗口-切换操作" class="headerlink" title="窗口/切换操作"></a>窗口/切换操作</h4><ul>
+<li><code>driver.switch_to_window(window_name)</code> :  切换到指定的window，window_name 可以通过 <code>driver.window_handles</code> 来获取：</li>
+</ul>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">driver = webdriver.Chrome()</div><div class="line">driver.get(<span class="string">'http://www.baidu.com'</span>)</div><div class="line">js = <span class="string">"window.open('http://flintx.me')"</span></div><div class="line">driver.execute_script(js)</div><div class="line">driver.switch_to_window(driver.window_handles[<span class="number">0</span>])</div></pre></td></tr></table></figure>
+<p>  ​</p>
+<ul>
+<li><p><code>driver.switch_to_frame(frame_name)</code> :  切换到指定的frame</p>
+</li>
+<li><p><code>driver.switch_to_alert()</code> : 切换到当前弹出的alert</p>
+</li>
+<li><p><code>driver.forward()</code> : 前进</p>
+</li>
+<li><p><code>driver.back()</code> : 后退</p>
+</li>
+<li><p><code>driver.maximize_window()</code> : 窗口最大化</p>
+<p>​</p>
+</li>
+</ul>
+<h4 id="Cookies处理"><a href="#Cookies处理" class="headerlink" title="Cookies处理"></a>Cookies处理</h4><ul>
+<li>添加 Cookies : <code>add_cookie(cookie_dict)</code></li>
+<li>获取 Cookies : <code>get_cookie(name)</code> / <code>get_cookies()</code></li>
+<li>删除 Cookies : <code>delete_cookie(name)</code> / <code>delete_all_cookies()</code></li>
+</ul>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://blog.leanote.com/post/dapingxia@163.com/Python%E7%88%AC%E8%99%AB%E5%88%A9%E5%99%A85%E4%B9%8BSelenium%E7%9A%84%E4%BD%BF%E7%94%A8" target="_blank" rel="external">Python爬虫利器5之Selenium的使用</a></li>
+<li><a href="http://selenium-python.readthedocs.io/" target="_blank" rel="external">Selenium with Python</a> </li>
+<li><a href="http://www.cnblogs.com/Albert-Lee/p/6238866.html" target="_blank" rel="external">Python爬虫小白入门（四）PhatomJS+Selenium第一篇 - 阿里波特 - 博客园</a></li>
+</ul>
+<p>由衷感谢这些资料的撰写者与提供者！</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[争分夺秒学技术]]></title>
       <url>https://flintx.github.io/2017/07/29/save-time-to-learn/</url>
       <content type="html"><![CDATA[<p>7月份，每天40度的高温下，我历经了毕业以来的最身心俱疲的辛苦：令人惶惶的项目需求，无一秒闲暇的加班加点，知识匮乏与能力不足带来的不甘。</p>
