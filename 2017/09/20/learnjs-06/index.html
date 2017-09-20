@@ -1,0 +1,1338 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,前端,jQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Flintx" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="参考 &amp;amp; 学习：
+锋利的jQuery
+廖老师的JavaScript教程
+jQuery 教程 | 菜鸟教程
+阮一峰的网络日志
+JavaScript 参考文档
+W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记06（Ajax 与 JSON）">
+<meta property="og:url" content="https://flintx.github.io/2017/09/20/learnjs-06/index.html">
+<meta property="og:site_name" content="Flintx">
+<meta property="og:description" content="参考 &amp;amp; 学习：
+锋利的jQuery
+廖老师的JavaScript教程
+jQuery 教程 | 菜鸟教程
+阮一峰的网络日志
+JavaScript 参考文档
+W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/learn-ajax.gif">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/ajax-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E8%A2%AB%E6%8B%92.png">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/learn-ajax-jsonp.gif">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/ajax-cors%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/jQuery.load.gif">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/jQuery.load_2.gif">
+<meta property="og:image" content="http://okqi2ipwh.bkt.clouddn.com/jQuery.getpost.gif">
+<meta property="og:updated_time" content="2017-09-20T13:36:13.954Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript学习笔记06（Ajax 与 JSON）">
+<meta name="twitter:description" content="参考 &amp;amp; 学习：
+锋利的jQuery
+廖老师的JavaScript教程
+jQuery 教程 | 菜鸟教程
+阮一峰的网络日志
+JavaScript 参考文档
+W3School JavaScript 教程
+由衷感谢这些资料的提供者与撰写者！">
+<meta name="twitter:image" content="http://okqi2ipwh.bkt.clouddn.com/learn-ajax.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://flintx.github.io/2017/09/20/learnjs-06/"/>
+
+
+
+
+
+  <title> JavaScript学习笔记06（Ajax 与 JSON） | Flintx </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e2834a2f75a970357e69689ccbccc8c9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=60614526";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Flintx</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://flintx.github.io/2017/09/20/learnjs-06/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Flint Zhao">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://okqi2ipwh.bkt.clouddn.com/203312wywjrkzl7k4w701y.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Flintx">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Flintx" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript学习笔记06（Ajax 与 JSON）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-20T21:04:13+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript学习/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/20/learnjs-06/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/20/learnjs-06/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/09/20/learnjs-06/" class="leancloud_visitors" data-flag-title="JavaScript学习笔记06（Ajax 与 JSON）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考 &amp; 学习：</p>
+<p><a href="https://book.douban.com/subject/10792216/" target="_blank" rel="external">锋利的jQuery</a></p>
+<p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖老师的JavaScript教程</a></p>
+<p><a href="http://www.runoob.com/jquery/jquery-intro.html" target="_blank" rel="external">jQuery 教程 | 菜鸟教程</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/" target="_blank" rel="external">阮一峰的网络日志</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference" target="_blank" rel="external">JavaScript 参考文档</a></p>
+<p><a href="http://www.w3school.com.cn/js/index.asp" target="_blank" rel="external">W3School JavaScript 教程</a></p>
+<p>由衷感谢这些资料的提供者与撰写者！</p>
+</blockquote>
+<a id="more"></a>
+<p>Ajax 全称是 <strong>Asynchronous JavaScript and XML（异步的JavaScript与XML）</strong> , 它的出现开启了无刷新即可更新页面的时代，并使用户操作与服务器响应异步化（使之不需要相互等待），大大减轻了服务器与带宽的负担。</p>
+<h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><p>Ajax 技术的核心是 XMLHttpRequest 对象，用以发送异步请求、接收服务器响应与执行回调函数。</p>
+<p>一个demo（<code>learn-ajax-01.html</code> ）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">        function ajax() &#123;</div><div class="line">            var xmlHttpReq = null;</div><div class="line">            if (window.XMLHttpRequest) &#123; // 兼容IE5 &amp; IE6</div><div class="line">                xmlHttpReq = new XMLHttpRequest();</div><div class="line">            &#125; else &#123;</div><div class="line">                xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");</div><div class="line">            &#125;</div><div class="line"></div><div class="line">          	// 第一个参数：请求方法</div><div class="line">          	// 第二个参数：请求url</div><div class="line">          	// 第三个参数：是否异步加载，默认为true。如果为false，则网页需要等待响应后才能继续加载</div><div class="line">            xmlHttpReq.open("GET", "test-01.php", true); </div><div class="line">            // 设置回调函数</div><div class="line">            xmlHttpReq.onreadystatechange = RequestCallback;</div><div class="line">          	// 发送请求，GET请求不需要参数，POST请求需要把body部分以字符串或者FormData对象传进去</div><div class="line">            xmlHttpReq.send(null);</div><div class="line">            </div><div class="line">            function RequestCallback() &#123;</div><div class="line">                if (xmlHttpReq.readyState === 4) &#123; // 请求加载完成（readyState值为4）</div><div class="line">                    if (xmlHttpReq.status === 200) &#123; // 响应成功（HTTP状态码为200）</div><div class="line">                        document.getElementById("id1").innerHTML = xmlHttpReq.responseText;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id1"</span> <span class="attr">class</span>=<span class="string">"divclass"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">onclick</span>=<span class="string">"ajax();"</span>&gt;</span>Send<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>同目录下的 <code>test-01.php</code> 文件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">  <span class="keyword">echo</span> <span class="string">"Hello, Ajax"</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>点击send按钮，会有如下反应：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/learn-ajax.gif" alt=""></p>
+<h2 id="同源策略与跨域请求问题"><a href="#同源策略与跨域请求问题" class="headerlink" title="同源策略与跨域请求问题"></a>同源策略与跨域请求问题</h2><h3 id="什么是同源与跨域？"><a href="#什么是同源与跨域？" class="headerlink" title="什么是同源与跨域？"></a>什么是同源与跨域？</h3><ul>
+<li>同源：域名要相同（<code>www.example.com</code>和<code>example.com</code>不同），协议要相同（<code>http</code>和<code>https</code>不同），端口号要相同（<code>:80</code>端口和<code>:8088</code>不同）。</li>
+<li>跨域：同源的反义词，一般有这几种情况。<ul>
+<li>端口不同</li>
+<li>协议不同</li>
+<li>主域相同，子域不同（可通过插入<code>iframe</code> + 设置 <code>document.domain</code> 来解决）</li>
+<li>主域不相同</li>
+<li>还有一种情况，端口、协议均相同，但ip地址与域名两者之间也算跨域（哪怕二者是映射关系）</li>
+</ul>
+</li>
+</ul>
+<p>下面说一下 Ajax 的跨域请求问题。</p>
+<p>浏览器出于安全考虑，会限制 JavaScript （即脚本层面）发起的跨域请求，这里做个示例：</p>
+<ol>
+<li><p>在硬盘任意位置新建一个文件夹（我的是 <code>9000/</code> ），在文件夹中新建一个php文件（例如 <code>index.php</code> ），内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    <span class="keyword">echo</span> <span class="string">'text in 127.0.0.1:9000'</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>9000</code> 文件夹下打开命令行，输入如下命令（启动PHP自带的Web Server，后面跟网络地址及监听的端口号，默认的网站根目录为当前目录）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ php -S 127.0.0.1:9000</div><div class="line">PHP 5.6.30 Development Server started at Mon Sep 04 13:20:23 2017</div><div class="line">Listening on http://127.0.0.1:9000</div><div class="line">Document root is F:\...\9000</div><div class="line">Press Ctrl-C to quit.</div></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器中访问 <code>http://127.0.0.1:9000/index.php</code> 或 <code>http://localhost:9000/index.php</code> 会得到如下内容：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">text in 127.0.0.1:9000</div></pre></td></tr></table></figure>
+</li>
+<li><p>将之前 <code>learn-ajax-01.html</code> 中的 <code>xmlHttpReq.open(&quot;GET&quot;, &quot;test-01.php&quot;, true);</code> 修改为 <code>xmlHttpReq.open(&quot;GET&quot;, &quot;http://localhost:9000/index.php&quot;, true);</code> ，点击 Send 按钮无任何反应，打开 Chrome 开发者工具，发现如下错误：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/ajax-%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E8%A2%AB%E6%8B%92.png" alt=""></p>
+<p>这就是跨域（<a href="http://localhost:80" target="_blank" rel="external">http://localhost:80</a> 与 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> ，不同端口域）请求错误。</p>
+</li>
+</ol>
+<p>值得一提的是，对跨域请求的限制是浏览器的行为，并非 JavaScript 本身的限制，不同浏览器限制策略可能有所不一。</p>
+<p>一般来说，现代浏览器在平衡安全性和可用性的基础上，有所选择地为跨域请求开放后门。 例如 <code>img</code>  <code>script</code>  <code>style</code> 等标签，都允许跨域引用资源。但对 Ajax 等利用脚本进行不同域之间的数据通信技术来说，浏览器是坚决把同源策略执行到底的，如果不做任何处理直接发出跨域请求，将会报错。</p>
+<p>要实现 Ajax 的跨域请求，有多种hack方法或者h5新标准引入的方法，但核心原则是：</p>
+<blockquote>
+<p>是否允许 Ajax 跨域请求的控制权在服务器端。</p>
+</blockquote>
+<p>即没有什么方法能绝对实现跨域请求，能否实现关键在于服务器端的控制。接下来要讲的几种跨域方法也大多需要服务器端的配合或环境条件支持。</p>
+<p>一般实现 Ajax 跨域通信的方法主要有两类：</p>
+<ol>
+<li>Hack类：即通过具有<code>src</code>属性的HTML标签来传递消息，比较常见的有 JSONP 方法。</li>
+<li>H5新标准：HTML5引入了跨域资源共享（CORS）的事实标准，还提供了 <code>window.postMessage()</code> 方法让窗口之间来交换信息。</li>
+</ol>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>从上面的例子中可以看出，由于浏览器的限制，我们不能用 Ajax 来直接请求不同域上的数据。</p>
+<p>然而，引入不同域上的 js 文件却是可以的，JSONP 正是利用这个特性来实现。</p>
+<p><strong>JSONP</strong> 全称是 <strong>JSON with Padding</strong> ，它将返回的 JSON 数据包装成了以 JSON 数据为参数的回调函数。</p>
+<p>为了介绍 JSONP，先将之前在 <code>9000</code> 文件夹下的 <code>index.php</code> 修改为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $arr = <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'flintx'</span>, <span class="string">'age'</span> =&gt; <span class="string">'22'</span>, <span class="string">'text'</span> =&gt; <span class="string">'text in 127.0.0.1:9000'</span>);</div><div class="line">    <span class="keyword">echo</span> json_encode($arr);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>在浏览器访问 <a href="http://localhost:9000/index.php" target="_blank" rel="external">http://localhost:9000/index.php</a> ，返回的信息如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"name"</span>:<span class="string">"flintx"</span>,<span class="attr">"age"</span>:<span class="string">"22"</span>,<span class="attr">"text"</span>:<span class="string">"text in 127.0.0.1:9000"</span>&#125;</div></pre></td></tr></table></figure>
+<p>如果我们修改 <code>index.php</code> ，将返回的 JSON 数据包装成了以 JSON 数据为参数的回调函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $callback = $_GET[<span class="string">'callback'</span>];</div><div class="line">    $arr = <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'flintx'</span>, <span class="string">'age'</span> =&gt; <span class="string">'22'</span>, <span class="string">'text'</span> =&gt; <span class="string">'text in 127.0.0.1:9000'</span>);</div><div class="line">    <span class="keyword">echo</span> $callback . <span class="string">"("</span> . json_encode($arr) . <span class="string">");"</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>在浏览器访问 <a href="http://localhost:9000/index.php?callback=deal_data" target="_blank" rel="external">http://localhost:9000/index.php?callback=deal_data</a> ，返回的信息如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">deal_data(&#123;"name":"flintx","age":"22","text":"text in 127.0.0.1:9000"&#125;);</div></pre></td></tr></table></figure>
+<p>如果我们在之前的 <code>learn-ajax-01.html</code> 中增加一个 <code>script</code> 标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:9000/index.php?callback=deal_data"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>那么就相当于在另一个域中，执行了以返回的 JSON 数据为参数的回调函数 <code>deal_data({&quot;name&quot;:&quot;flintx&quot;,&quot;age&quot;:&quot;22&quot;,&quot;text&quot;:&quot;text in 127.0.0.1:9000&quot;});</code> </p>
+<p>如果提前在 <code>learn-ajax-01.html</code> 中定义了 <code>deal_data(json_data)</code> 函数，就意味着完成了对跨域请求返回数据的调用。</p>
+<p>这就是 JSONP 方式。</p>
+<p>下面是完整的 demo：</p>
+<ul>
+<li>localhost 默认端口下的 <code>learn-ajax-01.html</code> </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">        function jsonp() &#123;</div><div class="line">            var url = "http://localhost:9000/index.php?callback=deal_data";</div><div class="line">            var scriptDom = document.createElement("script");</div><div class="line">            scriptDom.src = url;</div><div class="line">            document.getElementsByTagName("body")[0].appendChild(scriptDom);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        function deal_data(json_data) &#123;</div><div class="line">            document.getElementById("id1").innerHTML = "name: " + json_data["name"] + </div><div class="line">                "; age: " + json_data["age"] + </div><div class="line">                "; text: " + json_data["text"];</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id1"</span> <span class="attr">class</span>=<span class="string">"divclass"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">onclick</span>=<span class="string">"jsonp();"</span>&gt;</span>Send<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>localhost 9000 端口下的 <code>index.php</code> </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $callback = $_GET[<span class="string">'callback'</span>];</div><div class="line">    $arr = <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'flintx'</span>, <span class="string">'age'</span> =&gt; <span class="string">'22'</span>, <span class="string">'text'</span> =&gt; <span class="string">'text in 127.0.0.1:9000'</span>);</div><div class="line">    <span class="keyword">echo</span> $callback . <span class="string">"("</span> . json_encode($arr) . <span class="string">");"</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>运行效果：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/learn-ajax-jsonp.gif" alt=""></p>
+<p>事实上，插入 <code>script</code> 标签与定义回调函数的操作是可以通过一些库中的方法来自动完成的，例如 jQuery 中的 <code>getJSON()</code> 方法，下面的代码执行效果和之前纯 js 的版本一致：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.staticfile.org/jquery/3.2.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>Send<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">        $("#btn1").click(function() &#123;</div><div class="line">            $.getJSON("http://localhost:9000/index.php?callback=?", function(json_data) &#123;</div><div class="line">                var innerHtml = "name: " + json_data["name"] + </div><div class="line">                    "; age: " + json_data["age"] + </div><div class="line">                    "; text: " + json_data["text"];</div><div class="line">                $("#id1").html(innerHtml);</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>getJSON()</code> 方法会自动判断请求是否跨域，不跨域调用普通的 Ajax 方法；跨域则使用 JSONP 方法，临时生成一个回调函数名字来替代 <code>callback=?</code> 的 <code>?</code> 部分（一般是 <code>jQuery32107324169903315518_1504591602038</code> 之类的）。</p>
+<p>除了 <code>$.getJSON()</code> 方法外，也可以直接用 <code>$.ajax()</code> 方法来完成 JSONP 请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">// $.getJSON("http://localhost:9000/index.php?callback=?", function(json_data) &#123;</span></div><div class="line">            <span class="comment">//     var innerHtml = "name: " + json_data["name"] + </span></div><div class="line">            <span class="comment">//         "; age: " + json_data["age"] + </span></div><div class="line">            <span class="comment">//         "; text: " + json_data["text"];</span></div><div class="line">            <span class="comment">//     $("#id1").html(innerHtml);</span></div><div class="line">            <span class="comment">// &#125;);</span></div><div class="line">  </div><div class="line">  			<span class="comment">// 与注释部分代码等价</span></div><div class="line">            $.ajax(&#123;</div><div class="line">                <span class="attr">type</span>: <span class="string">"GET"</span>, <span class="comment">// 请求方式</span></div><div class="line">                url: <span class="string">"http://localhost:9000/index.php"</span>,</div><div class="line">                <span class="attr">dataType</span>: <span class="string">"jsonp"</span>, <span class="comment">// 返回数据类型</span></div><div class="line">                crossDomain: <span class="literal">true</span>, <span class="comment">// 是否跨域</span></div><div class="line">                success: <span class="function"><span class="keyword">function</span>(<span class="params">json_data</span>) </span>&#123; <span class="comment">// 请求成功后的回调函数</span></div><div class="line">                    <span class="keyword">var</span> innerHtml = <span class="string">"name: "</span> + json_data[<span class="string">"name"</span>] + </div><div class="line">                        <span class="string">"; age: "</span> + json_data[<span class="string">"age"</span>] + </div><div class="line">                        <span class="string">"; text: "</span> + json_data[<span class="string">"text"</span>];</div><div class="line">                    $(<span class="string">"#id1"</span>).html(innerHtml);</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>JSONP 是一种很巧妙的跨域请求方式，但和所有依赖于创建HTML标签的方式一样，JSONP只支持GET请求。即使用 <code>$.ajax()</code> 方法将 <code>type</code> 设置为其他请求方式，只要 <code>dataType</code> 是 <code>jsonp</code> ，还是会换回来。</p>
+<p>而GET的数据是放在URL里的。 虽然 <a href="https://www.w3.org/Protocols/rfc2616/rfc2616.html" target="_blank" rel="external">RFC 2616</a> 没有提到限制到多少， 但提到了服务器可以对自己认为比较长的URL返回414状态码。一般来讲URL限长是在2000字符左右。所以JSONP方式对跨域请求较大数据比较无力。</p>
+<h3 id="CROS"><a href="#CROS" class="headerlink" title="CROS"></a>CROS</h3><p>CROS 是 HTML5 引入的新标准，关于它的介绍我直接引用 <a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">阮一峰老师的文章</a> : </p>
+<blockquote>
+<p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。</p>
+<p>它允许浏览器向跨源服务器，发出<a href="http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html" target="_blank" rel="external"><code>XMLHttpRequest</code></a>请求，从而克服了AJAX只能<a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="external">同源</a>使用的限制。</p>
+<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
+<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
+</blockquote>
+<p>CORS 支持所有类型的 HTTP 请求，是跨域请求的王道方式。</p>
+<p>一个Demo：</p>
+<p>修改 9000 端口下的 <code>index.php</code> 文件为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">  	<span class="comment">// 必要字段。值为请求时Origin字段的值，或者是一个*，表示接受任意域名的请求。</span></div><div class="line">    header(<span class="string">'Access-Control-Allow-Origin: *'</span>); </div><div class="line">	<span class="comment">// 必要字段。值为逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。</span></div><div class="line">    header(<span class="string">'Access-Control-Allow-Methods: GET, POST'</span>);</div><div class="line">	<span class="comment">// 可选字段。值为本次预检请求的有效期，单位为秒。</span></div><div class="line">    header(<span class="string">'Access-Control-Max-Age: 1000'</span>);</div><div class="line"></div><div class="line">    $arr = <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; <span class="string">'flintx'</span>, <span class="string">'age'</span> =&gt; <span class="string">'22'</span>, <span class="string">'text'</span> =&gt; <span class="string">'text in 127.0.0.1:9000'</span>);</div><div class="line">    <span class="keyword">echo</span> json_encode($arr);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>然后 80 端口下的 <code>learn-ajax-01.html</code> 文件用普通 Ajax 请求 9000 端口下的 <code>index.php</code> : </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.staticfile.org/jquery/3.2.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>Send<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $.ajax(&#123;</div><div class="line">                <span class="attr">type</span>: <span class="string">"GET"</span>, <span class="comment">// 请求方式</span></div><div class="line">                url: <span class="string">"http://localhost:9000/index.php"</span>,</div><div class="line">                <span class="attr">dataType</span>: <span class="string">"json"</span>, <span class="comment">// 返回数据类型</span></div><div class="line">                crossDomain: <span class="literal">true</span>, <span class="comment">// 是否跨域</span></div><div class="line">                success: <span class="function"><span class="keyword">function</span>(<span class="params">json_data</span>) </span>&#123; <span class="comment">// 请求成功后的回调函数</span></div><div class="line">                    <span class="keyword">var</span> innerHtml = <span class="string">"name: "</span> + json_data[<span class="string">"name"</span>] + </div><div class="line">                        <span class="string">"; age: "</span> + json_data[<span class="string">"age"</span>] + </div><div class="line">                        <span class="string">"; text: "</span> + json_data[<span class="string">"text"</span>];</div><div class="line">                    $(<span class="string">"#id1"</span>).html(innerHtml);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    </div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>请求成功：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/ajax-cors%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F.png" alt=""></p>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><ul>
+<li><a href="http://www.cnblogs.com/alsy/p/5470772.html" target="_blank" rel="external">iframe + window.domain 实现跨子域请求</a></li>
+<li>利用 window 实现跨域请求：<ul>
+<li><a href="http://www.cnblogs.com/alsy/p/5470772.html" target="_blank" rel="external">iframe + window.name</a></li>
+<li><a href="http://www.cnblogs.com/alsy/p/5470772.html" target="_blank" rel="external">iframe + window.postMessage</a> （html5新API）</li>
+</ul>
+</li>
+</ul>
+<h2 id="jQuery-中的-Ajax"><a href="#jQuery-中的-Ajax" class="headerlink" title="jQuery 中的 Ajax"></a>jQuery 中的 Ajax</h2><p>jQuery 对 Ajax 操作进行了封装，根据封装的程度可以将 jQuery 中的 Ajax 方法分为三个层次，分别是：</p>
+<ul>
+<li><p>第一层：<code>$.ajax()</code> </p>
+<p><code>$.ajax(options)</code>  是 jQuery 中最底层的 Ajax 方法实现，参数是一个由 key-value 构成的 Object，参数详情见 <a href="http://www.css88.com/jqapi-1.9/jQuery.ajax/" target="_blank" rel="external">jQuery.ajax()</a> .</p>
+</li>
+<li><p>第二层：<code>$.get()</code> , <code>$.post()</code> , <code>load()</code> </p>
+<p>这三个方法是最为常用的方法。</p>
+</li>
+<li><p>第三层：<code>$.getScript()</code> , <code>$.getJSON()</code> </p>
+</li>
+</ul>
+<h3 id="load"><a href="#load" class="headerlink" title="load()"></a>load()</h3><p>先编写一个 <code>learn-ajax-02.html</code> ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container1"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>Load<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.staticfile.org/jquery/3.2.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"#container1"</span>).load(<span class="string">"content.html"</span>);</div><div class="line">        &#125;);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>以及用于加载的同目录下的 <code>content.html</code> ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div3"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>王麻子<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>执行效果：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/jQuery.load.gif" alt=""></p>
+<p>事实上，还可以为参数 url 指定选择器，以加载指定的 html 内容，url 选择器格式为 <code>url selector</code> 。</p>
+<p>修改 <code>learn-ajax-02.html</code> 与 <code>content.html</code> ：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container1"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>Load div1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn2"</span>&gt;</span>Load id-1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn3"</span>&gt;</span>Load divx<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn4"</span>&gt;</span>Load all<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.staticfile.org/jquery/3.2.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        $(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"#container1"</span>).load(<span class="string">"content.html .div1"</span>);</div><div class="line">        &#125;);</div><div class="line">        $(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"#container1"</span>).load(<span class="string">"content.html #id-1"</span>);</div><div class="line">        &#125;);</div><div class="line">        $(<span class="string">"#btn3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"#container1"</span>).load(<span class="string">"content.html [class^=div]"</span>);</div><div class="line">        &#125;);</div><div class="line">        $(<span class="string">"#btn4"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="string">"#container1"</span>).load(<span class="string">"content.html"</span>);</div><div class="line">        &#125;);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>class=div1的张三<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>class=div2的李四<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div3"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>class=div3的王麻子<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"id-1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>id=id-1的结衣酱<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>执行效果：</p>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/jQuery.load_2.gif" alt=""></p>
+<p><code>load()</code> 方法中，如果没有要发送的 data 数据（即第二个参数不是 data），则以 GET 方式来发出请求，反之则以 POST 来发出请求，即：</p>
+<ul>
+<li><code>load(url, function(){...});</code> =&gt; GET 方式</li>
+<li><code>load(url, {key1:value1, key2:value2, ...}, function(){...});</code> =&gt; POST 方式</li>
+</ul>
+<p>其中 function(){…} 是回调函数，无论 Ajax 请求是否 <strong>成功</strong>， 只要请求<strong>完成</strong>，均会执行。</p>
+<h3 id="get-和-post"><a href="#get-和-post" class="headerlink" title="get() 和 post()"></a>get() 和 post()</h3><p><code>load()</code> 方法一般用于加载静态资源，如果与服务器有数据交互，最好还是使用 <code>$.get()</code> 或 <code>$.post()</code> 方法。</p>
+<p>两个方法的参数均有4个：</p>
+<ul>
+<li><p>url，请求的url；</p>
+</li>
+<li><p>data（可选），发送至服务器的 key-value 数据，GET 方式以拼接字符串的方式构造查询 url，POST 方式以消息内容实体的方式来发送 data；</p>
+</li>
+<li><p>callback（可选），回调函数，只有当请求成功时才执行；如果要分别执行请求成功、请求失败、请求完成等情景下不同的回调函数，可使用 <code>jqXHR.success()</code>, <code>jqXHR.error()</code> 和 <code>jqXHR.complete()</code> （jQuery 1.5 ~ 1.8，3.0后已删除）或 <code>jqXHR.done()</code> （表示成功）, <code>jqXHR.fail()</code> （表示错误）和 <code>jqXHR.always()</code> （jQuery 1.6+）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.get(<span class="string">"example.php"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"success"</span>);</div><div class="line">&#125;).success(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// .done()</span></div><div class="line">    alert(<span class="string">"second success"</span>);</div><div class="line">&#125;).error(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// .fail()</span></div><div class="line">    alert(<span class="string">"error"</span>);</div><div class="line">&#125;).complete(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// .always()</span></div><div class="line">    alert(<span class="string">"complete"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>type（可选），返回的数据内容格式，包括 <code>xml</code> , <code>html</code> , <code>json</code> , <code>script</code> , <code>text</code> , …</p>
+</li>
+</ul>
+<p>demo: <code>learn-ajax-03.html</code> + <code>test.php</code> </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"form1"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>Comment<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Nickname: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span> <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Content: <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">id</span>=<span class="string">"content"</span> <span class="attr">cols</span>=<span class="string">"30"</span> <span class="attr">rows</span>=<span class="string">"10"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"get"</span> <span class="attr">value</span>=<span class="string">"Send by GET"</span>&gt;</span> &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp</div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"post"</span> <span class="attr">value</span>=<span class="string">"Send by POST"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"comment"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.staticfile.org/jquery/3.2.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        </div><div class="line">        $(<span class="string">"#get"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log($(<span class="string">"#name"</span>).val());</div><div class="line">            $.get(<span class="string">"test.php"</span>, &#123;</div><div class="line">                <span class="attr">name</span> : $(<span class="string">"#name"</span>).val(),</div><div class="line">                <span class="attr">content</span> : $(<span class="string">"#content"</span>).val(),</div><div class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">                $(<span class="string">"#comment"</span>).append(<span class="string">"&lt;p&gt;"</span> + data.name + <span class="string">" says: "</span> + data.content + <span class="string">"&lt;/p&gt;"</span>);</div><div class="line">            &#125;, <span class="string">"json"</span>);</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        $(<span class="string">"#post"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $.post(<span class="string">"test.php"</span>, &#123;</div><div class="line">                <span class="attr">name</span> : $(<span class="string">"#name"</span>).val(),</div><div class="line">                <span class="attr">content</span> : $(<span class="string">"#content"</span>).val(),</div><div class="line">            &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">                $(<span class="string">"#comment"</span>).append(<span class="string">"&lt;p&gt;"</span> + data.name + <span class="string">" says: "</span> + data.content + <span class="string">"&lt;/p&gt;"</span>);</div><div class="line">            &#125;, <span class="string">"json"</span>);</div><div class="line">        &#125;);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    $name = $_GET[<span class="string">'name'</span>]? $_GET[<span class="string">'name'</span>] : $_POST[<span class="string">'name'</span>];</div><div class="line">    $content = $_GET[<span class="string">'content'</span>]? $_GET[<span class="string">'content'</span>] : $_POST[<span class="string">'content'</span>];</div><div class="line">    $arr = <span class="keyword">array</span>(<span class="string">'name'</span> =&gt; $name, <span class="string">'content'</span> =&gt; $content . <span class="string">" by "</span> . $_SERVER[<span class="string">'REQUEST_METHOD'</span>]);</div><div class="line">    <span class="keyword">echo</span> json_encode($arr);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p><img src="http://okqi2ipwh.bkt.clouddn.com/jQuery.getpost.gif" alt=""></p>
+<h3 id="其他方法-1"><a href="#其他方法-1" class="headerlink" title="其他方法"></a>其他方法</h3><p>看 <a href="http://www.css88.com/jqapi-1.9/category/ajax/" target="_blank" rel="external">文档</a> 吧 : )</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/17/2018jd-pow/" rel="next" title="2018京东校招题 求幂">
+                <i class="fa fa-chevron-left"></i> 2018京东校招题 求幂
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://okqi2ipwh.bkt.clouddn.com/203312wywjrkzl7k4w701y.gif"
+               alt="Flint Zhao" />
+          <p class="site-author-name" itemprop="name">Flint Zhao</p>
+          <p class="site-description motion-element" itemprop="description">鲜衣怒马少年时</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/flintx" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/FlintZhao" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/flintx" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/flintx" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/qq_15714857" title="CSDN博客" target="_blank">CSDN博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://flintx.me/2017/02/02/Blog-Logs/" title="建站日志" target="_blank">建站日志</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XMLHttpRequest对象"><span class="nav-number">1.</span> <span class="nav-text">XMLHttpRequest对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同源策略与跨域请求问题"><span class="nav-number">2.</span> <span class="nav-text">同源策略与跨域请求问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是同源与跨域？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是同源与跨域？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP"><span class="nav-number">2.2.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CROS"><span class="nav-number">2.3.</span> <span class="nav-text">CROS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">2.4.</span> <span class="nav-text">其他方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-中的-Ajax"><span class="nav-number">3.</span> <span class="nav-text">jQuery 中的 Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#load"><span class="nav-number">3.1.</span> <span class="nav-text">load()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-和-post"><span class="nav-number">3.2.</span> <span class="nav-text">get() 和 post()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法-1"><span class="nav-number">3.3.</span> <span class="nav-text">其他方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Flint Zhao</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 93167, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 93167, xid: "2017/09/20/learnjs-06/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/93167/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("13IHpQ3QxSfjCu3odKHAmlPs-gzGzoHsz", "EX6a7l9qFahghSKFSj2K7S7d");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+
+</body>
+</html>
